@@ -1,12 +1,11 @@
+# For Dataset information, please refer to Dataset/Result section of the paper 
+# "Deep Multi-Sensor Domain Adaptation on Active and Passive Satellite Remote Sensing Data" at 
+# http://mason.gmu.edu/~lzhao9/venues/DeepSpatial2020/papers/DeepSpatial2020_paper_14_camera_ready.pdf 
+
 # For GPU computing, latency per epoch is around 13 sec.
 # For CPU computing, latency per epoch is around 26 sec.
 
-import keras
 import sys
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
-# from keras.optimizers import RMSprop
 
 import matplotlib.pyplot as plt
 
@@ -27,16 +26,18 @@ else:
 
 data = np.load('./data/train10.npz')
 
-# passive = 1
-#load common data
+# passive dataset = 1, Active dataset: Calipso, Passive Dataset: VIRRS
+#load common data, please refer to the paper above for the common attributes 
 latlon = data['latlon']
 iff = data['iff']
 
+# Load viirs data 
 X_v = data['viirs']
 Y_v = data['label']
 print ('X_v shape:')
 print (X_v.shape)
 
+# Load calipso data 
 X_c = data['calipso']
 Y_c = data['label']
 print ('X_c shape:')
@@ -85,7 +86,6 @@ X_v = np.nan_to_num(X_v)
 X_c = np.nan_to_num(X_c)
 
 # combine data and split latter to define ground truth for MLR
-# from sklearn.linear_model import LinearRegression
 n1=20
 n2=25
 X=np.concatenate((X_v, X_c), axis=1)
@@ -128,14 +128,7 @@ print(x_valid_v.shape)
 print(x_valid_c.shape)
 print(x_valid_comm.shape)
 
-# x_test_v = x_test[:, 0:20]
-# x_test_c = x_test[:, 20:45]
-# x_test_comm = x_test[:, 45:51]
-
-# print(x_test_v.shape)
-# print(x_test_c.shape)
-# print(x_test_comm.shape)
-
+# add the common attributes into the viirs dataset
 x_train_pt = np.concatenate((x_train_v, x_train_comm),axis=1)
 x_valid_pt = np.concatenate((x_valid_v, x_valid_comm),axis=1)
 
@@ -143,6 +136,7 @@ data_test = np.load('./data/test_142_day.npz')
 
 passive =1
 
+# process the test data
 #load common data
 latlon_test = data_test['latlon']
 iff_test = data_test['iff']
@@ -167,6 +161,7 @@ Y_s_test = y_s_test[inds_test]
 X_s_test = x_s_test[inds_test]
 
 # 0 =< SZA <= 83
+# Feature engineering from Chenxi's paper 
 print('original X_t_test: ', X_t_test.shape)
 rows_test = np.where((X_t_test[:,0] >= 0) & (X_t_test[:,0] <= 83) & (X_t_test[:,15] > 100) & (X_t_test[:,15] < 400) & (X_t_test[:,16] > 100) & (X_t_test[:,16] < 400) & (X_t_test[:,17] > 100) & (X_t_test[:,17] < 400) & (X_t_test[:,18] > 100) & (X_t_test[:,18] < 400) & (X_t_test[:,19] > 100) & (X_t_test[:,19] < 400) & (X_t_test[:,10] > 0))
 print("rows_test:", rows_test)
@@ -187,11 +182,6 @@ X_t_test = np.nan_to_num(X_t_test)
 print('after SZA X_t_test: ', X_t_test.shape)
 print('after SZA X_s_test: ', X_s_test.shape)
 
-# pca = decomposition.PCA(n_components=20)
-# pca.fit(X_s_test)
-# X_s_test = pca.transform(X_s_test)
-# print (X_s_test.shape)
-
 #concanate common data
 # X_t_test = np.concatenate((X_t_test, Latlon_test, Iff_test), axis=1)
 X_s_test = np.concatenate((X_s_test, Latlon_test, Iff_test), axis=1)
@@ -201,39 +191,12 @@ print (X_t_test.shape)
 
 X_test=np.concatenate((X_t_test, X_s_test), axis=1)
 
-# scaler_t = StandardScaler()
-# scaler_t.fit(X_t_test)
-# X_t_test = scaler_t.transform(X_t_test)
-
-# scaler_s = StandardScaler()
-# scaler_s.fit(X_s_test)
-# X_s_test= scaler_s.transform(X_s_test)
-
+# apply the feature scalar to testing data
 x_test2=sc_X.transform(X_test)
-
-# x_train_v = x_train[:, 0:20]
-# x_train_c = x_train[:, 20:45]
-# x_train_comm = x_train[:, 45:51]
-# print(x_train_v.shape)
-# print(x_train_c.shape)
-# print(x_train_comm.shape)
-
-# x_valid_v = x_valid[:, 0:20]
-# x_valid_c = x_valid[:, 20:45]
-# x_valid_comm = x_valid[:, 45:51]
-
-# print(x_valid_v.shape)
-# print(x_valid_c.shape)
-# print(x_valid_comm.shape)
 
 X_t_test = x_test2[:, 0:20]
 x_test_c2 = x_test2[:, 20:45]
 x_test_comm2 = x_test2[:, 45:51]
-
-
-# DLR imputed target domain
-# x_test_t_pt = model_reg.predict(X_t_test)
-# print(x_test_t_pt.shape)
 
 x_test_pt_test = np.concatenate((X_t_test, x_test_comm2),axis=1)
 print(x_test_pt_test.shape)
@@ -273,7 +236,7 @@ NUM = 26
 # DIFFERECE_COL = 5
 BATCH_SIZE = 1024
 
-# dataset definition
+# dataset definition, create dataset for torch data loader 
 class CSVDataset(Dataset):
     # load the dataset
     def __init__(self, X1, Y1):
@@ -308,7 +271,7 @@ class CSVDataset(Dataset):
         # calculate the split
         return random_split(self, [train_size, test_size])
 
-# model definition
+# DL model definition in torch 
 class MLP(Module):
     # define model elements
     def __init__(self, n_inputs):
@@ -366,17 +329,7 @@ class MLP(Module):
         X = self.act3(X)
         return X
 
-# # prepare the dataset
-# def prepare_data(path, X2, Y2):
-#     # load the dataset
-#     dataset = CSVDataset(path, X2, Y2)
-#     # calculate split
-#     train, test = dataset.get_splits()
-#     # prepare data loaders
-#     train_dl = DataLoader(train, batch_size=BATCH_SIZE, shuffle=True)
-#     test_dl = DataLoader(test, batch_size=BATCH_SIZE, shuffle=True)
-#     return train_dl, test_dl
-
+# Create data loader for training 
 # prepare the dataset - random split within a dataset
 def prepare_data(X2_train, Y2_train, X2_test, Y2_test):
     # load the train dataset
@@ -497,19 +450,10 @@ def predict(row, model):
     yhat = yhat.detach().numpy()
     return yhat
 
-# prepare the data
-# path = 'https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv'
-# path = 'Sat_data_small.npz'
-# train_dl, test_dl = prepare_data(path, X_t, Y_t)
-
-# X_s = x_train_src
-# Y_s = y_train
 
 X_t = x_train_pt
 Y_t = y_train
 
-# X_s_test = X_s_test
-# Y_s_test = Y_s_test
 X_t_test = x_test_pt_test
 Y_t_test = Y_s_test
 
@@ -529,185 +473,4 @@ train_model(train_tgt, test_tgt, model, _device)
 # evaluate the model
 acc = evaluate_model(test_tgt, model, _device)
 print('Accuracy: %.3f' % acc)
-# make a single prediction
-# row = [5.1,3.5,1.4,0.2]
-# yhat = predict(row, model)
-# print('Predicted: %s (class=%d)' % (yhat, argmax(yhat)))
 
-#print("X_t_test.shape:", X_t_test[0:1000, :].shape)
-
-'''
-# try IntegratedGradients methods
-from captum.attr import IntegratedGradients
-model.eval()
-ig = IntegratedGradients(model)
-
-test_input_tensor = torch.from_numpy(X_t_test[0:10000, :]).type(torch.FloatTensor)
-# test_input_tensor.requires_grad_()
-
-attributions, delta = ig.attribute(test_input_tensor, target=1, return_convergence_delta=True)
-print('IG Attributions.shape:', attributions.shape)
-print('IG Attributions:', attributions)
-print('Convergence Delta.shape:', delta.shape)
-print('Convergence Delta:', delta)
-ig_attr = attributions.detach().numpy()
-print ("IntegratedGradients feature importance:")
-np.mean(ig_attr, axis=0)
-
-from captum.attr import DeepLift, GradientShap, NoiseTunnel, FeatureAblation
-
-model.eval()
-# try GradientShap methods
-gs = GradientShap(model)
-
-#test_input_tensor = torch.from_numpy(X_t_test[0:10000, :]).type(torch.FloatTensor)
-train_input_tensor = torch.from_numpy(X_t[0:10000, :]).type(torch.FloatTensor)
-
-#gs_attr_test = gs.attribute(X_test, X_train)
-
-attributions, delta = gs.attribute(test_input_tensor, train_input_tensor)
-print('GS Attributions.shape:', attributions.shape)
-print('GS Attributions:', attributions)
-print('Convergence Delta.shape:', delta.shape)
-print('Convergence Delta:', delta)
-gs_attr = attributions.detach().numpy()
-print ("GradientShap feature importance:")
-np.mean(gs_attr, axis=0)
-
-
-#valid dataset
-X_t = x_train_pt
-Y_t = y_train
-
-# X_s_test = X_s_test
-# Y_s_test = Y_s_test
-X_t_valid = x_valid_pt
-Y_t_valid = y_valid
-
-
-train_tgt, valid_tgt = prepare_data(X_t, Y_t, X_t_valid, Y_t_valid)
-
-
-# evaluate the model
-acc = evaluate_model(train_tgt, model)
-print('train ccuracy: %.3f' % acc)
-
-# evaluate the model
-acc = evaluate_model(valid_tgt, model)
-print('valid ccuracy: %.3f' % acc)
-
-data_test = np.load('./data/test_155_day.npz')
-
-passive =1
-
-#load common data
-latlon_test = data_test['latlon']
-iff_test = data_test['iff']
-
-# if passive ==1:
-x_t_test = data_test['viirs']
-y_t_test = data_test['label']
-# else:
-x_s_test = data_test['calipso']
-y_s_test = data_test['label']
-    
-inds_test,vals_test = np.where(y_t_test>0)
-
-# process common data
-Latlon_test = latlon_test[inds_test]
-Iff_test = iff_test[inds_test]
-
-Y_t_test = y_t_test[inds_test]
-X_t_test = x_t_test[inds_test]
-
-Y_s_test = y_s_test[inds_test]
-X_s_test = x_s_test[inds_test]
-
-# 0 =< SZA <= 83
-print('original X_t_test: ', X_t_test.shape)
-rows_test = np.where((X_t_test[:,0] >= 0) & (X_t_test[:,0] <= 83) & (X_t_test[:,15] > 100) & (X_t_test[:,15] < 400) & (X_t_test[:,16] > 100) & (X_t_test[:,16] < 400) & (X_t_test[:,17] > 100) & (X_t_test[:,17] < 400) & (X_t_test[:,18] > 100) & (X_t_test[:,18] < 400) & (X_t_test[:,19] > 100) & (X_t_test[:,19] < 400) & (X_t_test[:,10] > 0))
-print("rows_test:", rows_test)
-print("rows_test.shape:", len(rows_test))
-
-Latlon_test = Latlon_test[rows_test]
-Iff_test = Iff_test[rows_test]
-
-Y_t_test = Y_t_test[rows_test]
-X_t_test = X_t_test[rows_test]
-
-Y_s_test = Y_s_test[rows_test]
-X_s_test = X_s_test[rows_test]
-
-X_s_test = np.nan_to_num(X_s_test)
-X_t_test = np.nan_to_num(X_t_test)
-
-print('after SZA X_t_test: ', X_t_test.shape)
-print('after SZA X_s_test: ', X_s_test.shape)
-
-# pca = decomposition.PCA(n_components=20)
-# pca.fit(X_s_test)
-# X_s_test = pca.transform(X_s_test)
-# print (X_s_test.shape)
-
-#concanate common data
-# X_t_test = np.concatenate((X_t_test, Latlon_test, Iff_test), axis=1)
-X_s_test = np.concatenate((X_s_test, Latlon_test, Iff_test), axis=1)
-
-print (X_s_test.shape)
-print (X_t_test.shape)
-
-X_test=np.concatenate((X_t_test, X_s_test), axis=1)
-
-# scaler_t = StandardScaler()
-# scaler_t.fit(X_t_test)
-# X_t_test = scaler_t.transform(X_t_test)
-
-# scaler_s = StandardScaler()
-# scaler_s.fit(X_s_test)
-# X_s_test= scaler_s.transform(X_s_test)
-
-x_test2=sc_X.transform(X_test)
-
-# x_train_v = x_train[:, 0:20]
-# x_train_c = x_train[:, 20:45]
-# x_train_comm = x_train[:, 45:51]
-# print(x_train_v.shape)
-# print(x_train_c.shape)
-# print(x_train_comm.shape)
-
-# x_valid_v = x_valid[:, 0:20]
-# x_valid_c = x_valid[:, 20:45]
-# x_valid_comm = x_valid[:, 45:51]
-
-# print(x_valid_v.shape)
-# print(x_valid_c.shape)
-# print(x_valid_comm.shape)
-
-X_t_test = x_test2[:, 0:20]
-x_test_c2 = x_test2[:, 20:45]
-x_test_comm2 = x_test2[:, 45:51]
-
-
-# DLR imputed target domain
-# x_test_t_pt = model_reg.predict(X_t_test)
-# print(x_test_t_pt.shape)
-
-x_test_pt_test = np.concatenate((X_t_test, x_test_comm2),axis=1)
-print(x_test_pt_test.shape)
-
-X_t = x_train_pt
-Y_t = y_train
-
-# X_s_test = X_s_test
-# Y_s_test = Y_s_test
-X_t_test = x_test_pt_test
-Y_t_test = Y_s_test
-
-
-train_tgt, test_tgt = prepare_data(X_t, Y_t, X_t_test, Y_t_test)
-
-
-# evaluate the model
-acc = evaluate_model(test_tgt, model)
-print('test Accuracy: %.3f' % acc)
-'''
