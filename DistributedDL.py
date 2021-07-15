@@ -26,8 +26,9 @@ else:
 
 data = np.load('./data/train10.npz')
 
-# passive dataset = 1, Active dataset: Calipso, Passive Dataset: VIRRS
-#load common data, please refer to the paper above for the common attributes 
+# Active dataset: Calipso (represented as X_s [source domain], or X_c [calipso] in the code), 
+# Passive Dataset: VIRRS  (represented as X_t [target domain], or X_c [virrs] in the code), 
+# load common data, please refer to the paper above for the common attributes 
 latlon = data['latlon']
 iff = data['iff']
 
@@ -467,7 +468,7 @@ print(test_tgt)
 print(len(test_tgt.dataset))
 # define the network
 model = MLP(NUM)
-# train the model
+# train the model, this is a simple MLP model training and testing on Virrs (target) dataset. 
 train_model(train_tgt, test_tgt, model, _device)
 
 # evaluate the model
