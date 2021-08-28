@@ -60,7 +60,7 @@ aws s3 cp s3://kddworkshop/office31.tar.gz ./
 
 11. Run programs on docker containers
 
-For a closer look, please refer to our [presentation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation/blob/main/docs/NASA%20ACCESS%20AWS%20Cloud%20Presentation.pptx.pdf).
+For a closer look, please refer to our [slides](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation/blob/main/docs/NASA%20ACCESS%20AWS%20Cloud%20Presentation.pptx.pdf) or [presentation](https://umbc.webex.com/umbc/ldr.php?RCID=c6ed195f99c97a237183aa6a65392a36).
 
 ## Command line automation via Boto
 Follow steps below for automating single machine computation. For distributed machine computation, see README on each example's sub-folder.  
