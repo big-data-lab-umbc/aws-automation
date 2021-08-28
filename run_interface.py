@@ -13,14 +13,14 @@ emrConfigFile = "config/emr-configuration-ecr-public.json"
 def readsummary(): 
     config = configparser.ConfigParser()
     config.read(configFile)
-    return (str(config['summary']['your_key_path']),str(config['summary']['your_key_name']),str(config['summary']['access_key']),str(config['summary']['secret_key']),str(config['summary']['git_link']))
+    return (str(config['summary']['your_key_path']),str(config['summary']['your_key_name']),str(config['summary']['access_key']),str(config['summary']['secret_key']),str(config['summary']['git_link']),str(config['summary']['runtime_application']))
 
 def readaws():
     config = configparser.ConfigParser() 
     config.read(configFile)
     return (int(config['aws']['TOTAL_INSTANCE']),str(config['aws']['SUBNET_ID']),str(config['aws']['INSTANCE_TYPE']),str(config['aws']['REGION']),str(config['aws']['SECURITY_GROUP_ID']),str(config['aws']['VPC_ID']))
 
-your_key_path, your_key_name, access_key, secret_key, git_link = readsummary()  #str
+your_key_path, your_key_name, access_key, secret_key, git_link, runtime_application = readsummary()  #str
 TOTAL_INSTANCE, SUBNET_ID, INSTANCE_TYPE, REGION, SECURITY_GROUP_ID, VPC_ID = readaws() #int,str
 
 if not boto.config.has_section('ec2'):
@@ -93,7 +93,7 @@ def LaunchInstances():
     dev_sda1.delete_on_termination = True
     bdm = boto.ec2.blockdevicemapping.BlockDeviceMapping()
     bdm['/dev/sda1'] = dev_sda1
-    img = ec2_conn.get_all_images(filters={'name':'Deep Learning Base AMI (Ubuntu 16.04) Version 38.0'})[0].id
+    img = ec2_conn.get_all_images(filters={'name':'Deep Learning Base AMI (Ubuntu 16.04) Version 40.0'})[0].id
     #img = "ami-09b07024e0b31501d"
     reservation = ec2_conn.run_instances(image_id=img,
                                  min_count=TOTAL_INSTANCE,
@@ -133,14 +133,14 @@ def join_get(l,sep):
         return 'ubuntu@'+l
 
 def callFabFromIPList(l, work):
-    call('fab -i %s -H %s %s' % (your_key_path, join_get(l,','), work), shell=True)
+    call('fab -r %s -i %s -H %s %s' % ("./"+runtime_application+"/",your_key_path, join_get(l,','), work), shell=True)
 
 c = callFabFromIPList
 
-def RunDL():
+def RunSingleVMComputing():
     c(getIP(), 'start %s %s %s'%(git_link,access_key,secret_key))
 
-def InstallDeps():
+def InstallDeps(access_key, secret_key):
     result = []
     for region in regions:
         result += get_ec2_instances_ip(region) or []
