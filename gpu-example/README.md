@@ -26,6 +26,7 @@ nvidia-docker run -it --network=host -v /mnt/share/ssh:/root/.ssh -v /home/ubunt
 ```
 
 5. Run programs on GPUs
+
 On primary VM: 
 ```bash
 cd MultiGpus-Domain-Adaptation-main
