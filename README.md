@@ -35,6 +35,32 @@ We use 1 instance for single machine computation, and 2 instances for distribute
 8. SSH into your instance
 <p align="center"><img src="docs/ssh.png"/></p>
 
+9. Install Docker and download Docker images
+CPU example:
+```bash
+docker pull starlyxxx/dask-decision-tree-example
+```
+
+GPU example:
+```bash
+docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
+```
+
+10. Download source data and code on AWS S3
+CPU example:
+```bash
+aws s3 cp s3://kddworkshop/ML_based_Cloud_Retrieval_Use_Case.zip ./
+```
+
+GPU example:
+```bash
+aws s3 cp s3://kddworkshop/MultiGpus-Domain-Adaptation-main.zip ./
+aws s3 cp s3://kddworkshop/office31.tar.gz ./
+```
+
+11. Run programs on docker containers
+For a closer look, please refer to our [presentation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation/blob/main/docs/NASA ACCESS AWS Cloud Presentation.pptx.pdf).
+
 ## Command line automation via Boto
 Follow steps below for automating single machine computation. For distributed machine computation, see README on each example's sub-folder.  
 
