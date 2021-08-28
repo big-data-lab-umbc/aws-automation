@@ -1,3 +1,8 @@
+"""
+Author: Xin Wang. Phd Student. University of Maryland, Baltimore County
+Date: 08/24/2021
+"""
+
 import boto.ec2
 import sys, os
 import time
