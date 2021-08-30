@@ -137,20 +137,45 @@ def join_get(l,sep):
     if isinstance(l,str):
         return 'ubuntu@'+l
 
+def join_getlist(l):
+    output = []
+    if isinstance(l,list):
+        for i in l:
+            output.append('ubuntu@'+i)
+    if isinstance(l,str):
+        output.append('ubuntu@'+l)
+    return output
+
 def callFabFromIPList(l, work):
+    print('fab -r %s -i %s -H %s %s' % ("./"+runtime_application+"/",your_key_path, join_get(l,','), work))
     call('fab -r %s -i %s -H %s %s' % ("./"+runtime_application+"/",your_key_path, join_get(l,','), work), shell=True)
 
 c = callFabFromIPList
 
 def RunSingleVMComputing():
-    c(getIP(), 'start %s %s %s'%(git_link,access_key,secret_key))
+    c(getIP()[0], 'start %s %s %s'%(git_link,access_key,secret_key))
 
-def InstallDeps(access_key, secret_key):
-    result = []
+def InstallDeps():
+    result = []    
     for region in regions:
         result += get_ec2_instances_ip(region) or []
     open('public_ip','w').write('\n'.join(result))
-    c(getIP(), 'installDeps')
+
+    # bashfilename = "scripts/runInstallDeps.sh"
+    # ips = join_getlist(getIP())
+    # work = 'installDeps %s %s %s'%(git_link,access_key,secret_key)
+    # f = open(bashfilename,"w")
+    # f.write("#!/bin/bash\n\n")
+    # for i in range(len(ips)):
+    #     f.write('fab -r %s -i %s -H %s %s&\n' % ("./"+runtime_application+"/",your_key_path, ips[i], work))
+    # f.close()
+
+    # try:
+    #     popen = Popen('./%s'%bashfilename)
+    # except:
+    #     popen = Popen(['bash',bashfilename])
+
+    c(getIP(), 'installDeps %s %s %s'%(git_link,access_key,secret_key))
 
 def TerminateAll():
     c(getIP(), 'addhoc')

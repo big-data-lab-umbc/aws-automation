@@ -50,8 +50,7 @@ def installDeps(conn,git_link,aws_access_key_id,aws_secret_access_key):
     conn.run("aws s3 cp s3://kddworkshop/office31.tar.gz ./")
     conn.run("unzip MultiGpus-Domain-Adaptation-main.zip")
     conn.run("tar -xzvf office31.tar.gz")
-    
+
 @task
 def start(conn,git_link,access_key,secret_key):
-    conn.run("nvidia-docker run -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 -d starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest")
-    conn.run('docker exec -it starlyxxx/dask-decision-tree-example:latest cd MultiGpus-Domain-Adaptation-main && horovodrun --verbose -np 1 -H localhost:1 /usr/bin/python3.6 main.py --config DeepCoral/DeepCoral.yaml --data_dir ../office31 --src_domain webcam --tgt_domain amazon')
+    conn.run("nvidia-docker run -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 --name gpuapp starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest horovodrun --verbose -np 1 -H localhost:1 /usr/bin/python3.6 MultiGpus-Domain-Adaptation-main/main.py --config MultiGpus-Domain-Adaptation-main/DeepCoral/DeepCoral.yaml --data_dir office31 --src_domain webcam --tgt_domain amazon")

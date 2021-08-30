@@ -51,5 +51,4 @@ def installDeps(conn,git_link,aws_access_key_id,aws_secret_access_key):
 
 @task
 def start(conn,git_link,access_key,secret_key):
-    conn.run("docker run -v /home/ubuntu/ML_based_Cloud_Retrieval_Use_Case:/root/ML_based_Cloud_Retrieval_Use_Case -d starlyxxx/dask-decision-tree-example:latest")
-    conn.run('docker exec -it starlyxxx/dask-decision-tree-example:latest cd ML_based_Cloud_Retrieval_Use_Case/Code && /usr/bin/python3.6 ml_based_cloud_retrieval_with_data_preprocessing.py')
+    conn.run("docker run -v /home/ubuntu/ML_based_Cloud_Retrieval_Use_Case:/root/ML_based_Cloud_Retrieval_Use_Case --name cpuapp starlyxxx/dask-decision-tree-example:latest /usr/bin/python3.6 ML_based_Cloud_Retrieval_Use_Case/Code/ml_based_cloud_retrieval_with_data_preprocessing.py")
