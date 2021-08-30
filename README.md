@@ -80,7 +80,7 @@ Use your customized configurations. Replace default values in ./config/config.in
 python3 run_interface.py 
 ```
 
-3. Launch VMs on EC2
+3. Launch VMs on EC2 and wait for initializing
 ```bash
 LaunchInstances()
 ```
