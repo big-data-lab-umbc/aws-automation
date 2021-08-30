@@ -10,7 +10,7 @@ ipAll()
 ssh -i ~/.ssh/id_rsa ubuntu@<VMs_ip_address>
 ```
 
-3. Add primary VM's public key to all secondary VMs' authorized_keys file in <~/.ssh/authorized_keys>. Then generate a shared file system in </mnt/share/>
+3. Add primary VM's public key to all secondary VMs' authorized_keys file in <~/.ssh/authorized_keys>. (If key pair does not exsit, use $ssh-keygen to generate a key pair.) Check if primary VM can ssh into Secondary VMs by using $ ssh -o "StrictHostKeyChecking no" <Secondary-VMs-ip-address>. Then generate a shared file system in </mnt/share/>
 ```bash
 sudo mkdir -p /mnt/share/ssh && sudo cp ~/.ssh/* /mnt/share/ssh
 ```

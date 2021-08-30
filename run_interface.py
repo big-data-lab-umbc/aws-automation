@@ -155,6 +155,13 @@ c = callFabFromIPList
 def RunSingleVMComputing():
     c(getIP()[0], 'start %s %s %s'%(git_link,access_key,secret_key))
 
+def CheckStatus():
+    result = []    
+    for region in regions:
+        result += get_ec2_instances_ip(region) or []
+    open('public_ip','w').write('\n'.join(result))
+    pass
+
 def InstallDeps():
     result = []    
     for region in regions:
