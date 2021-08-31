@@ -62,6 +62,9 @@ aws s3 cp s3://kddworkshop/office31.tar.gz ./
 
 For a closer look, please refer to our [slides](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation/blob/main/docs/NASA%20ACCESS%20AWS%20Cloud%20Presentation.pptx.pdf) or [presentation](https://umbc.webex.com/umbc/ldr.php?RCID=c6ed195f99c97a237183aa6a65392a36).
 
+12. Terminate all VMs on EC2 when finishing experiments.
+<p align="center"><img src="docs/terminate.png"/></p>
+
 ## Command line automation via Boto
 Follow steps below for automating single machine computation. For distributed machine computation, see README on each example's sub-folder.  
 
@@ -71,6 +74,7 @@ pip install boto fabric2 scanf IPython invoke
 pip install Werkzeug --upgrade
 ```
 
+### Run single machine computation: 
 1. Configuration
 
 Use your customized configurations. Replace default values in ./config/config.ini  
@@ -94,7 +98,7 @@ InstallDeps()
 RunSingleVMComputing() 
 ```
   
-6. Terminate all VMs on EC2
+6. Terminate all VMs on EC2 when finishing experiments.
 ```bash
 TerminateAll() 
 ```    
