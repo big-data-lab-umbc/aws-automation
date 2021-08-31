@@ -77,7 +77,7 @@ pip install Werkzeug --upgrade
 ### Run single machine computation: 
 1. Configuration
 
-Use your customized configurations. Replace default values in ./config/config.ini  
+Use your customized configurations. Replace default values in <./config/config.ini>  
    
 2. Start IPython   
 ```bash
