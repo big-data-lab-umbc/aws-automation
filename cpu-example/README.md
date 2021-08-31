@@ -1,33 +1,37 @@
-### Distributed machine computation on CPUs
+## Distributed machine computation on CPUs
 
-1. Follow same steps from 1-4 in single machine computation. Then get VMs' ip address
+### Prerequisites:
+- Web based: follow all steps in [web based cloud computation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation#web-based). Make sure you have installed docker and all source code/data in your VMs.
+
+- Boto: follow same steps from 1-4 in [boto single machine computation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation/blob/main/README.md#run-single-machine-computation). Then get VMs' ip address
 ```bash
 ipAll()
 ```
 
-2. Open new terminals, connect to all VMs
+### Run distributed programs on CPUs:
+1. Open new terminals, connect to all VMs
 ```bash
 ssh -i ~/.ssh/id_rsa ubuntu@<VMs_ip_address>
 ```
 
-3. Run distributed CPU containers on all VMs
+2. Run distributed CPU containers on all VMs
 ```bash
 docker run -it --network host -v /home/ubuntu/ML_based_Cloud_Retrieval_Use_Case:/root/ML_based_Cloud_Retrieval_Use_Case starlyxxx/dask-decision-tree-example:latest /bin/bash
 ```
 
-4. Run Dask cluster on all VMs in background
-Primary VM: 
+3. Run Dask cluster on all VMs in background
+- Primary VM: 
 ```bash
 dask-scheduler & 
 dask-worker <your-dask-scheduler-address> &
 ```
 
-Secondary VMs: 
+- Secondary VMs: 
 ```bash
 dask-worker <your-dask-scheduler-address> &
 ```
 
-5. Run programs on CPUs
+4. Run programs on CPUs
 On any VM:
 ```bash
 cd ML_based_Cloud_Retrieval_Use_Case/Code
@@ -35,3 +39,5 @@ cd ML_based_Cloud_Retrieval_Use_Case/Code
 ```
 
 Dask dashbroad can be check on [http://Your_Dask_Scheduler_PublicDNS:8787]()
+
+5. Terminate all VMs on EC2 when finishing experiments.
