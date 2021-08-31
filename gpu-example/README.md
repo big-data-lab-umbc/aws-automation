@@ -3,7 +3,7 @@
 ### Prerequisites:
 - Web based: follow all steps in [web based cloud computation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation#web-based). Make sure you have installed docker and all source code/data in your VMs.
 
-- Boto: follow same steps from 1-4 in [boto single machine computation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation#command-line-automation-via-boto). Then get VMs' ip address
+- Boto: follow same steps from 1-4 in [boto single machine computation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation/blob/main/README.md#run-single-machine-computation). Then get VMs' ip address
 ```bash
 ipAll()
 ```
@@ -37,4 +37,4 @@ cd MultiGpus-Domain-Adaptation-main
 horovodrun --verbose -np 2 -H <machine1-address>:1,<machine2-address>:1 -p 12345 /usr/bin/python3.6 main.py --config DeepCoral/DeepCoral.yaml --data_dir ../office31 --src_domain webcam --tgt_domain amazon
 ```
 
-5. Terminate all VMs when finishing experiments.
+5. Terminate all VMs on EC2 when finishing experiments.
