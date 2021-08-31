@@ -70,8 +70,8 @@ Follow steps below for automating single machine computation. For distributed ma
 
 ### Prerequisites:  
 ```bash
-pip install boto fabric2 scanf IPython invoke
-pip install Werkzeug --upgrade
+pip3 install boto fabric2 scanf IPython invoke
+pip3 install Werkzeug --upgrade
 ```
 
 ### Run single machine computation: 
