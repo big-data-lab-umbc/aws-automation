@@ -36,23 +36,23 @@ We use 1 instance for single machine computation, and 2 instances for distribute
 <p align="center"><img src="docs/ssh.png"/></p>
 
 9. Install Docker and download Docker images
-CPU example:
+- CPU example:
 ```bash
 docker pull starlyxxx/dask-decision-tree-example
 ```
 
-GPU example:
+- GPU example:
 ```bash
 docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
 ```
 
 10. Download source data and code on AWS S3
-CPU example:
+- CPU example:
 ```bash
 aws s3 cp s3://kddworkshop/ML_based_Cloud_Retrieval_Use_Case.zip ./
 ```
 
-GPU example:
+- GPU example:
 ```bash
 aws s3 cp s3://kddworkshop/MultiGpus-Domain-Adaptation-main.zip ./
 aws s3 cp s3://kddworkshop/office31.tar.gz ./
