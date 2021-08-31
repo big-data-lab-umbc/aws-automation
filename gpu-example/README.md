@@ -14,17 +14,17 @@ ipAll()
 ssh -i ~/.ssh/id_rsa ubuntu@<VMs_ip_address>
 ```
 
-2. Add primary VM's public key to all secondary VMs' authorized_keys file in <~/.ssh/authorized_keys>. (If key pair does not exsit, use $ssh-keygen to generate a ssh key pair. Check if primary VM can ssh into secondary VMs by using $ ssh -o "StrictHostKeyChecking no" <secondary-VMs-ip-address>.) Then generate a shared file system in </mnt/share/>
+2. Add primary VM's public key to all secondary VMs' authorized_keys file in <~/.ssh/authorized_keys>. (If key pair does not exsit, use ```ssh-keygen``` to generate a ssh key pair. Check if primary VM can ssh into secondary VMs by using ```ssh -o "StrictHostKeyChecking no" <secondary-VMs-ip-address>```.) Then generate a shared file system in </mnt/share/>
 ```bash
 sudo mkdir -p /mnt/share/ssh && sudo cp ~/.ssh/* /mnt/share/ssh
 ```
 
 3. Run distributed GPU containers on all VMs
-Primary VM: 
+- Primary VM: 
 ```bash
 nvidia-docker run -it --network=host -v /mnt/share/ssh:/root/.ssh -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest /bin/bash
 ```
-Secondary VMs: 
+- Secondary VMs: 
 ```bash
 nvidia-docker run -it --network=host -v /mnt/share/ssh:/root/.ssh -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest bash -c "/usr/sbin/sshd -p 12345; sleep infinity"
 ```
