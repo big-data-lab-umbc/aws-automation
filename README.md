@@ -35,7 +35,7 @@ We use 1 instance for single machine computation, and 2 instances for distribute
 8. SSH into your instance
 <p align="center"><img src="docs/ssh.png"/></p>
 
-9. Install Docker and download Docker images
+9. Install Docker and download Docker images. Also check our [DockerHub](https://hub.docker.com/u/starlyxxx).
 - CPU example:
 ```bash
 docker pull starlyxxx/dask-decision-tree-example
