@@ -50,12 +50,18 @@ docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
 - CPU example:
 ```bash
 aws s3 cp s3://kddworkshop/ML_based_Cloud_Retrieval_Use_Case.zip ./
+(wget https://kddworkshop.s3.us-west-2.amazonaws.com/ML_based_Cloud_Retrieval_Use_Case.zip)
+unzip ML_based_Cloud_Retrieval_Use_Case.zip
 ```
 
 - GPU example:
 ```bash
 aws s3 cp s3://kddworkshop/MultiGpus-Domain-Adaptation-main.zip ./
 aws s3 cp s3://kddworkshop/office31.tar.gz ./
+(wget https://kddworkshop.s3.us-west-2.amazonaws.com/MultiGpus-Domain-Adaptation-main.zip)
+(wget https://kddworkshop.s3.us-west-2.amazonaws.com/office31.tar.gz)
+unzip MultiGpus-Domain-Adaptation-main.zip
+tar -xzvf office31.tar.gz
 ```
 
 11. Run programs on docker containers
