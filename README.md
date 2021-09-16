@@ -38,12 +38,12 @@ We use 1 instance for single machine computation, and 2 instances for distribute
 9. Install [Docker](https://docs.docker.com/engine/install/ubuntu/) and download Docker images. Also check our [DockerHub](https://hub.docker.com/u/starlyxxx).
 - CPU example:
 ```bash
-docker pull starlyxxx/dask-decision-tree-example
+sudo docker pull starlyxxx/dask-decision-tree-example
 ```
 
 - GPU example:
 ```bash
-docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
+sudo docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
 ```
 
 10. Download source data and code on AWS S3
