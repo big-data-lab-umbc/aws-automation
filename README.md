@@ -44,6 +44,7 @@ sudo usermod -a -G docker ubuntu
 sudo chmod 666 /var/run/docker.sock
 ```
 <br/>
+
 10. Download [Docker images](https://hub.docker.com/u/starlyxxx)or build images by Dockerfile.
 - CPU example:
 ```bash
@@ -58,6 +59,7 @@ docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
 docker build -t <your-image-name>
 ```
 <br/>
+
 11. Download ML applications and data on AWS S3.
 - For privacy, we store the application code and data on AWS S3. Install aws cli and [set aws credentials](https://console.aws.amazon.com/iam/home?#/security_credentials).
 ```bash
