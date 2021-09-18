@@ -8,7 +8,7 @@ This git help you achieve single machine computation and distributed (multiple) 
 ## Web based
 
 1. Launch instances on [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home):   
-<p align="center"><img src="docs/launchvms.png"/></p>
+<p align="center"><img src="docs/launchvms.png"/></p><br/>
 
 2. Choose an Amazon Machine Image (AMI)  
 An AMI is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
