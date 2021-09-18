@@ -100,6 +100,7 @@ aws configure set aws_secret_access_key your-secret-key
   tar -xzvf office31.tar.gz
   ```
 <br/>
+
 12. Run docker containers for CPU applications.
 - Single CPU:
 ```bash
@@ -110,6 +111,7 @@ docker run -it -v /home/ubuntu/ML_based_Cloud_Retrieval_Use_Case:/root/ML_based_
 docker run -it --network host -v /home/ubuntu/ML_based_Cloud_Retrieval_Use_Case:/root/ML_based_Cloud_Retrieval_Use_Case starlyxxx/dask-decision-tree-example:latest /bin/bash
 ```
 <br/>
+
 13. Run docker containers for GPU applications
 - Single GPU:
 ```bash
@@ -129,6 +131,7 @@ nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/Mul
   nvidia-docker run -it --network=host -v /mnt/share/ssh:/root/.ssh -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest bash -c "/usr/sbin/sshd -p 12345; sleep infinity"
   ```
 <br/>
+
 14. Run ML CPU application:
     - Single CPU:
     ```bash
@@ -149,6 +152,7 @@ nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/Mul
     cd ML_based_Cloud_Retrieval_Use_Case/Code && /usr/bin/python3.6 dask_ml_based_cloud_retrieval_with_data_preprocessing.py <your-dask-scheduler-address>
     ```
   <br/>  
+  
 15. Run ML GPU application
     - Single GPU:
     ```bash
@@ -166,6 +170,7 @@ nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/Mul
       horovodrun --verbose -np 2 -H <machine1-address>:1,<machine2-address>:1 -p 12345 /usr/bin/python3.6 main.py --config DeepCoral/DeepCoral.yaml --data_dir ../office31 --src_domain webcam --tgt_domain amazon
       ```
 <br/>
+
 16. Terminate all VMs on EC2 when finishing experiments.
 <p align="center"><img src="docs/terminate.png"/></p>
 <br/>
