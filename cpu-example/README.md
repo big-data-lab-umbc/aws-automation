@@ -1,5 +1,7 @@
 ## Distributed machine computation on CPUs
 
+- [Web based Approach to run the CPU example with docker](Web-based-CPU-example-with-docker.md)
+
 ### Prerequisites:
 - Web based: follow all steps in [web based cloud computation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation#web-based). Make sure you have installed docker and all source code/data in your VMs.
 
