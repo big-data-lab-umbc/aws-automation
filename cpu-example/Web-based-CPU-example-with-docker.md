@@ -40,7 +40,7 @@ sudo chmod 666 /var/run/docker.sock
 ```
 <br/>
 
-10. Download [Docker images](https://hub.docker.com/u/starlyxxx)or build images by Dockerfile.
+10. Download [Docker images](https://hub.docker.com/u/starlyxxx) or build images by Dockerfile.
 - CPU example:
 ```bash
 docker pull starlyxxx/dask-decision-tree-example
