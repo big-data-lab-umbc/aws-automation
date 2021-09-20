@@ -1,7 +1,8 @@
 ## Distributed machine computation on CPUs
+There are different ways to run the Machine Learning based Cloud Retrieval use case. Please check the bullets below for each approach's details. 
 
-- [Web based Approach to run the example on a single CPU](Web-based-CPU-example-with-script.md)
-- [Web based Approach to run the example on a single CPU with docker](Web-based-CPU-example-with-docker.md)
+- [Web based approach to run the example on a single CPU](Web-based-CPU-example-with-script.md)
+- [Web based approach to run the example on a single CPU with docker](Web-based-CPU-example-with-docker.md)
 
 
 ### Prerequisites:
