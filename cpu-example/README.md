@@ -41,6 +41,6 @@ cd ML_based_Cloud_Retrieval_Use_Case/Code
 /usr/bin/python3.6 dask_ml_based_cloud_retrieval_with_data_preprocessing.py <your-dask-scheduler-address>
 ```
 
-Dask dashbroad can be check on [http://Your_Dask_Scheduler_PublicDNS:8787]()
+Dask dashbroad can be check on [http://Your_VM_PublicDNS:8787]()
 
 5. Terminate all VMs on EC2 when finishing experiments.
