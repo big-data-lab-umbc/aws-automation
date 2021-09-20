@@ -138,7 +138,7 @@ nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/Mul
         ```bash
         dask-scheduler & dask-worker <your-dask-scheduler-address> &
         ```
-        ● VM 2:
+        - VM 2:
         ```bash
         dask-worker <your-dask-scheduler-address> &
         ```
