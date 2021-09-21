@@ -18,5 +18,5 @@ This git help you achieve single machine computation and distributed (multiple) 
     - Boto based execution for multiple CPUs with docker
 - GPU Executions
 
-For instructions of CPU executions and GPU exectutions, please use the folders *cpu-example* and *gpu-example*
+For instructions of CPU executions and GPU exectutions, please use the folders *cpu-example* and *gpu-example*.
 
