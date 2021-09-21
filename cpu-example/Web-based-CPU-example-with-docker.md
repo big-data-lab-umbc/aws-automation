@@ -41,15 +41,12 @@ sudo chmod 666 /var/run/docker.sock
 <br/>
 
 10. Download [Docker images](https://hub.docker.com/u/starlyxxx) or build images by Dockerfile.
-- CPU example:
+
 ```bash
 docker pull starlyxxx/dask-decision-tree-example
 ```
-- GPU example:
-```bash
-docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
-```
-- or, build from Dockerfile:
+or, build from Dockerfile:
+
 ```bash
 docker build -t <your-image-name>
 ```
@@ -65,8 +62,8 @@ aws configure set aws_access_key_id your-access-key
 aws configure set aws_secret_access_key your-secret-key
 ```
 - Download ML applications and data on AWS S3.
-  - CPU example:
-    Download:
+  Download:
+
   ```bash
   aws s3 cp s3://kddworkshop/ML_based_Cloud_Retrieval_Use_Case.zip ./
   ```
@@ -78,23 +75,7 @@ aws configure set aws_secret_access_key your-secret-key
   ```bash
   ML_based_Cloud_Retrieval_Use_Case.zip
   ```
-  - GPU example:
-    Download:
-  ```bash
-  aws s3 cp s3://kddworkshop/MultiGpus-Domain-Adaptation-main.zip ./
-  aws s3 cp s3://kddworkshop/office31.tar.gz ./
-  ```
-  or
-  ```bash
-  wget https://kddworkshop.s3.us-west-2.amazonaws.com/MultiGpus-Domain-Adaptation-main.zip
-  wget https://kddworkshop.s3.us-west-2.amazonaws.com/office31.tar.gz
-  ```
-  Extract the files:
-  ```bash
-  unzip MultiGpus-Domain-Adaptation-main.zip
-  tar -xzvf office31.tar.gz
-  ```
-<br/>
+  <br/>
 
 12. Run docker containers for CPU applications.
 - Single CPU:
@@ -107,65 +88,30 @@ docker run -it --network host -v /home/ubuntu/ML_based_Cloud_Retrieval_Use_Case:
 ```
 <br/>
 
-13. Run docker containers for GPU applications
-- Single GPU:
+13. Run ML CPU application:
+
+- Single CPU:
 ```bash
-nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v home/ubuntu/office31:/root/office31 starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest /bin/bash
+cd ML_based_Cloud_Retrieval_Use_Case/Code && /usr/bin/python3.6 ml_based_cloud_retrieval_with_data_preprocessing.py
 ```
-- Multi-GPUs:
-  - Add primary worker’s public key to all secondary workers’ <~/.ssh/authorized_keys>
-  ```bash
-  sudo mkdir -p /mnt/share/ssh && sudo cp ~/.ssh/* /mnt/share/ssh
-  ```
-  - Primary worker VM:
-  ```bash
-  nvidia-docker run -it --network=host -v /mnt/share/ssh:/root/.ssh -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest /bin/bash
-  ```
-  - Secondary workers VM:
-  ```bash
-  nvidia-docker run -it --network=host -v /mnt/share/ssh:/root/.ssh -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest bash -c "/usr/sbin/sshd -p 12345; sleep infinity"
-  ```
-<br/>
+- Multi-CPUs:
+  - Run dask cluster on both VMs in background:
+    - VM 1:
+    ```bash
+    dask-scheduler & dask-worker <your-dask-scheduler-address> &
+    ```
+    - VM 2:
+    ```bash
+    dask-worker <your-dask-scheduler-address> &
+    ```
+- One of VMs:
+```bash
+cd ML_based_Cloud_Retrieval_Use_Case/Code && /usr/bin/python3.6 dask_ml_based_cloud_retrieval_with_data_preprocessing.py <your-dask-scheduler-address>
+```
+  <br/>
 
-14. Run ML CPU application:
-    - Single CPU:
-    ```bash
-    cd ML_based_Cloud_Retrieval_Use_Case/Code && /usr/bin/python3.6 ml_based_cloud_retrieval_with_data_preprocessing.py
-    ```
-    - Multi-CPUs:
-      - Run dask cluster on both VMs in background:
-        - VM 1:
-        ```bash
-        dask-scheduler & dask-worker <your-dask-scheduler-address> &
-        ```
-        - VM 2:
-        ```bash
-        dask-worker <your-dask-scheduler-address> &
-        ```
-    - One of VMs:
-    ```bash
-    cd ML_based_Cloud_Retrieval_Use_Case/Code && /usr/bin/python3.6 dask_ml_based_cloud_retrieval_with_data_preprocessing.py <your-dask-scheduler-address>
-    ```
-  <br/>  
+14. Terminate all VMs on EC2 when finishing experiments.
 
-15. Run ML GPU application
-    - Single GPU:
-    ```bash
-    cd MultiGpus-Domain-Adaptation-main
-    ```
-    ```bash
-    horovodrun --verbose -np 1 -H localhost:1 /usr/bin/python3.6 main.py --config DeepCoral/DeepCoral.yaml --data_dir ../office31 --src_domain webcam --tgt_domain amazon
-    ```
-    - Multi-GPUs:
-      - Primary worker VM:
-      ```bash
-      cd MultiGpus-Domain-Adaptation-main
-      ```
-      ```bash
-      horovodrun --verbose -np 2 -H <machine1-address>:1,<machine2-address>:1 -p 12345 /usr/bin/python3.6 main.py --config DeepCoral/DeepCoral.yaml --data_dir ../office31 --src_domain webcam --tgt_domain amazon
-      ```
-<br/>
-
-16. Terminate all VMs on EC2 when finishing experiments.
 <p align="center"><img src="../docs/terminate.png"/></p>
 <br/>
+
