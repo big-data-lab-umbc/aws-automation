@@ -3,12 +3,13 @@ There are different ways to run the Machine Learning based Cloud Retrieval use c
 
 - [Web based approach to run the example on a single CPU](Web-based-CPU-example-with-script.md)
 - [Web based approach to run the example on a single CPU with docker](Web-based-CPU-example-with-docker.md)
+- [Boto based approach to run the example on a single CPU](Boto-based-CPU-example-without-docker.md)
 
 
 ### Prerequisites:
-- Web based: follow all steps in [web based cloud computation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation#web-based). Make sure you have installed docker and all source code/data in your VMs.
+- Web based: follow all steps in [web based cloud computation](Web-based-CPU-example-with-script.md). Make sure you have installed docker and all source code/data in your VMs.
 
-- Boto: follow same steps from 1-4 in [boto single machine computation](https://github.com/AI-4-atmosphere-remote-sensing/aws-automation/blob/main/README.md#run-single-machine-computation). Then get VMs' ip address
+- Boto: follow same steps from 1-4 in [boto single machine computation](Boto-based-CPU-example-without-docker.md). Then get VMs' ip address
 ```bash
 ipAll()
 ```
