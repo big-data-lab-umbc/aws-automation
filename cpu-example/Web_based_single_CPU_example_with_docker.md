@@ -1,4 +1,4 @@
-# Web based Execution with Docker     
+# Web based Execution on a Single CPU with Docker     
 Web based
 
 
