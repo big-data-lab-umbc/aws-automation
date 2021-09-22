@@ -4,19 +4,25 @@
 
 Instead of buying, owning, and maintaining physical data centers and servers, you can access technology services (such as computing power, storage, and databases) from a cloud provider like Amazon Web Services (AWS), Microsoft Azure, Google Cloud, ...
 
-This git help you achieve single machine computation and distributed (multiple) machine computation on AWS, with both CPU and GPU execution. Here is a table of contents including all applications we have. 
+This git help you achieve single machine computation and distributed (multiple) machine computation on AWS, with both CPU and GPU execution. Here is a table of contents including all applications we have.
 
 ## Table of Contents
 
 - CPU Executions
   - Web-based 
-    - [Web based execution for a single CPU without docker](./cpu-example/Web-based-CPU-example-with-script.md) 
-    - [Web based execution for CPU(s) with docker](./cpu-example/Web-based-CPU-example-with-docker.md) 
+    - [Web based approach to run the example on a single CPU without docker](./cpu-example/Web_based_single_CPU_example_with_script.md)
+    - [Web based approach to run the example on multi-CPUs without docker](./cpu-example/Web_based_multi_CPUs_example_with_script.md)
+    - [Web based approach to run the example on a single CPU with docker](./cpu-example/Web_based_single_CPU_example_with_docker.md)
+    - [Web based approach to run the example on multi-CPUs with docker](./cpu-example/Web_based_multi_CPUs_example_with_docker.md)
   - Boto-based
-    - [Boto based execution for a single CPU without docker](./cpu-example/Boto-based-CPU-example-without-docker.md)
-- GPU Executions
+    - Boto based approach to run the example on a single CPU without docker (To be updated)
+    - Boto based approach to run the example on multi-CPUs without docker (To be updated)
+    - [Boto based approach to run the example on a single CPU with docker](./cpu-example/Boto_based_single_CPU_example_with_docker.md)
+    - Boto based approach to run the example on multi-CPUs with docker (To be updated)
+- GPU Executions (Instructions to be updated)
 
-For instructions of CPU executions and GPU exectutions, please go to folders *cpu-example* and *gpu-example*.
+The following is an overall instruction for all our implementations. For detailed instructions of CPU executions and GPU exectutions, please go to folders [*cpu-example*](./cpu-example/README.md) and [*gpu-example*](./gpu-example).
+
 
 ## Web based
 
