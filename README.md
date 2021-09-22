@@ -21,7 +21,7 @@ This git help you achieve single machine computation and distributed (multiple) 
     - Boto based approach to run the example on multi-CPUs with docker (To be updated)
 - GPU Executions (Instructions to be updated)
 
-The following is an overall instruction for all our implementations. For detailed instructions of CPU executions and GPU exectutions, please go to folders [*cpu-example*](./cpu-example/README.md) and [*gpu-example*](./gpu-example).
+The following is an overall instruction for all our implementations. For detailed instructions of CPU executions and GPU exectutions, please go to folders [*cpu-example*](./cpu-example) and [*gpu-example*](./gpu-example).
 
 
 ## Web based
