@@ -1,4 +1,4 @@
-# Boto Based Execution without Docker
+# Boto Based Execution on a Single CPU without Docker
 
 ## Command line automation via Boto
 Follow steps below for automating single machine computation. For distributed machine computation, see README on each example's sub-folder.  
