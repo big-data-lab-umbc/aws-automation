@@ -1,5 +1,5 @@
-# Web based Execution with Docker     
-Web based
+# Web based Execution of Distributed Computation with Docker     
+
 
 
 1. Launch instances on [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home):   
