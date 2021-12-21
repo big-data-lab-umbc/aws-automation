@@ -6,6 +6,10 @@ Instead of buying, owning, and maintaining physical data centers and servers, yo
 
 This git help you achieve single machine computation and distributed (multiple) machine computation on AWS, with both CPU and GPU execution. Here is a table of contents including all applications we have.
 
+### Notes of Caution
+- Because cloud computing charges by usage, please make sure to terminate or stop your virtual instances after you are done with them.
+- Because a cloud computing resource is often shared among many users, please include your name in your key file name, such as jianwu-key, so we know the creator of each virtual instance.
+
 ## Table of Contents
 
 - CPU Executions
