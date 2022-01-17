@@ -49,7 +49,7 @@ docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
 ```
 - or, build from Dockerfile:
 ```bash
-docker build -t <your-image-name>
+docker build -t <your-image-name> .
 ```
 <br/>
 
