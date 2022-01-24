@@ -17,7 +17,7 @@ Based on your purpose, AWS provides various instance types on [https://aws.amazo
 We use 1 instance for single machine computation.
 <p align="center"><img src="../docs/instancenumber.png"/></p><br/>
 
-4.5 ()Add Storage
+4.5 (Optional)Add Storage
 Add additional storage to your instance if needed.
 
 5. Configure Security Group
