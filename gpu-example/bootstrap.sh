@@ -3,9 +3,16 @@
 apt-get update 
 apt-get install -y sudo 
 sudo apt-get install -y software-properties-common 
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt-get update
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
 
+wget https://www.python.org/ftp/python/3.6.3/Python-3.6.3.tgz
+tar -xvf Python-3.6.3.tgz
+cd Python-3.6.3
+./configure --enable-optimizations
+make 
+sudo make install
+
+sudo apt-get update
 sudo apt-get install -y build-essential python3.6 python3.6-dev python3-pip python3.6-gdbm
 sudo apt-get install -y git wget curl zip unzip vim apt-utils gcc make libc-dev musl-dev g++
 
