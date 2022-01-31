@@ -31,7 +31,13 @@ We use 2 instances for distributed computation.
 8. SSH into your instance
 <p align="center"><img src="../docs/ssh.png"/></p><br/>
 
-9. Install [Docker](https://docs.docker.com/engine/install/ubuntu/)
+9. Copy [bootstrap.sh](bootstrap.sh) to your instance, and run the script
+```bash
+sudo bash bootstrap.sh
+```
+
+
+10. Install [Docker](https://docs.docker.com/engine/install/ubuntu/)
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -41,7 +47,7 @@ sudo chmod 666 /var/run/docker.sock
 ```
 <br/>
 
-10. Download [Docker images](https://hub.docker.com/u/starlyxxx) or build images by Dockerfile.
+11. Download [Docker images](https://hub.docker.com/u/starlyxxx) or build images by Dockerfile.
 
 - GPU example:
 ```bash
@@ -53,7 +59,7 @@ docker build -t <your-image-name> .
 ```
 <br/>
 
-11. Download ML applications and data on AWS S3.
+12. Download ML applications and data on AWS S3.
 - For privacy, we store the application code and data on AWS S3. Install aws cli and [set aws credentials](https://console.aws.amazon.com/iam/home?#/security_credentials).
 ```bash
 curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'
@@ -82,7 +88,7 @@ tar -xzvf office31.tar.gz
 ```
 <br/>
 
-12. Run docker containers for GPU applications
+13. Run docker containers for GPU applications
 
 - Add primary worker’s public key to all secondary workers’ <~/.ssh/authorized_keys>
 ```bash
@@ -100,7 +106,7 @@ sudo mkdir -p /mnt/share/ssh && sudo cp ~/.ssh/* /mnt/share/ssh
     ```
 <br/>  
 
-13. Run ML GPU application
+14. Run ML GPU application
 
 - Primary worker VM:
 ```bash
@@ -111,7 +117,7 @@ horovodrun --verbose -np 2 -H <machine1-address>:1,<machine2-address>:1 -p 12345
 ```
 <br/>
 
-14. Terminate all VMs on EC2 when finishing experiments.
+15. Terminate all VMs on EC2 when finishing experiments.
 
 <p align="center"><img src="../docs/terminate.png"/></p>
 <br/>

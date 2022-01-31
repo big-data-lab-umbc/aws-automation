@@ -1,13 +1,11 @@
 # Web based Execution of Distributed Computation with Docker     
-Web based
-
 
 1. Launch instances on [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home):   
 <p align="center"><img src="../docs/launchvms.png"/></p><br/>
 
 2. Choose an Amazon Machine Image (AMI)  
   An AMI is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
-  For CPU applications, we use **Ubuntu Server 16.04 LTS (HVM), SSD Volume Type**.  
+  For CPU applications, we use **Ubuntu Server 20.04 LTS (HVM), SSD Volume Type**.  
 
   
 

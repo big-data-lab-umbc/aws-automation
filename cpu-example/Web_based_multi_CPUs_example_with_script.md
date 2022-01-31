@@ -5,7 +5,7 @@
 
 2. Choose an Amazon Machine Image (AMI)  
     An AMI is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
-    For CPU applications, we use **Ubuntu Server 16.04 LTS (HVM), SSD Volume Type**.
+    For CPU applications, we use **Ubuntu Server 20.04 LTS (HVM), SSD Volume Type**.
 
   
 

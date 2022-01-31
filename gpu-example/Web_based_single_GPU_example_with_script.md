@@ -32,7 +32,13 @@ Add additional storage to your instance if needed.
 8. SSH into your instance
 <p align="center"><img src="../docs/ssh.png"/></p><br/>
 
-9. Install [Docker](https://docs.docker.com/engine/install/ubuntu/)
+9. Copy [bootstrap.sh](bootstrap.sh) to your instance, and run the script
+```bash
+sudo bash bootstrap.sh
+```
+
+
+10. Install [Docker](https://docs.docker.com/engine/install/ubuntu/)
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -42,7 +48,7 @@ sudo chmod 666 /var/run/docker.sock
 ```
 <br/>
 
-10. Download [Docker images](https://hub.docker.com/u/starlyxxx) or build images by Dockerfile.
+11. Download [Docker images](https://hub.docker.com/u/starlyxxx) or build images by Dockerfile.
 
 ```bash
 docker pull starlyxxx/horovod-pytorch-cuda10.1-cudnn7
@@ -54,7 +60,7 @@ docker build -t <your-image-name> .
 ```
 <br/>
 
-11. Download ML applications and data on AWS S3.
+12. Download ML applications and data on AWS S3.
 - For privacy, we store the application code and data on AWS S3. Install aws cli and [set aws credentials](https://console.aws.amazon.com/iam/home?#/security_credentials).
 ```bash
 curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'
@@ -83,7 +89,7 @@ aws configure set aws_secret_access_key your-secret-key
   ```
   <br/>
 
-12. Run docker containers for GPU applications
+13. Run docker containers for GPU applications
 
 - Single GPU:
 ```bash
@@ -91,7 +97,7 @@ nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/Mul
 ```
 <br/>  
 
-13. Run ML GPU application
+14. Run ML GPU application
 
 ```bash
 cd MultiGpus-Domain-Adaptation-main
@@ -101,7 +107,7 @@ horovodrun --verbose -np 1 -H localhost:1 /usr/bin/python3.6 main.py --config De
 ```
 <br/>
 
-14. Terminate the virtual machine on EC2 when finishing experiments.
+15. Terminate the virtual machine on EC2 when finishing experiments.
 
 <p align="center"><img src="../docs/terminate.png"/></p>
 <br/>

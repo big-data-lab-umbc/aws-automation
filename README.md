@@ -1,4 +1,4 @@
-# Distributed ML on AWS Cloud: Computing with CPUs and GPUs     
+# Distributed ML on AWS Cloud: Computing with CPUs and GPUs    
 
 ## Introduction
 
@@ -9,6 +9,7 @@ This git help you achieve single machine computation and distributed (multiple) 
 ### Notes of Caution
 - Because cloud computing is charges by usage, please make sure to terminate or stop your virtual instances after you are done with them.
 - Because a cloud computing resource is often shared among many users, please include your name in your key file name, such as jianwu-key, so we know the creator of each virtual instance.
+- See different versions of this repository in **Tags**.
 
 ## Table of Contents
 
@@ -24,8 +25,8 @@ This git help you achieve single machine computation and distributed (multiple) 
     - [Boto based approach to run the example on a single CPU with docker](./cpu-example/Boto_based_single_CPU_example_with_docker.md)
     - Boto based approach to run the example on multi-CPUs with docker (To be updated)
 - GPU Executions
-    - Web based approach to run the example on a single GPU without docker (To be updated)
-    - Web based approach to run the example on multi-GPUs without docker (To be updated)
+    - [Web based approach to run the example on a single CPU without docker](./gpu-example/Web_based_single_GPU_example_with_script.md)
+    - [Web based approach to run the example on multi-CPUs without docker](./gpu-example/Web_based_multi_GPUs_example_with_script.md)
     - [Web based approach to run the example on a single GPU with docker](./gpu-example/Web_based_single_GPU_example_with_docker.md)
     - [Web based approach to run the example on multi-GPUs with docker](./gpu-example/Web_based_multi_GPUs_example_with_docker.md)
 
@@ -40,7 +41,7 @@ The following is an overall instruction for all our implementations. For detaile
 
 2. Choose an Amazon Machine Image (AMI)  
 An AMI is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
-For CPU applications, we use Ubuntu Server 16.04 LTS (HVM), SSD Volume Type; for GPU case, we use Deep Learning Base AMI (Ubuntu 16.04) Version 40.0.  
+For CPU applications, we use **Ubuntu Server 20.04 LTS (HVM), SSD Volume Type**; for GPU case, we use **Deep Learning Base AMI (Ubuntu 16.04) Version 40.0**.  
 <p align="center"><img src="docs/ami.png"/></p>
 
 3. Choose an Instance Type  
@@ -202,7 +203,7 @@ nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/Mul
         dask-scheduler & dask-worker <your-dask-scheduler-address> &
         ```
 
-        ● VM 2: 
+        - VM 2: 
 
         ```bash
         dask-worker <your-dask-scheduler-address> &
