@@ -1,4 +1,4 @@
-# Distributed ML on AWS Cloud: Computing with CPUs and GPUs    
+# Distributed Machine Learning on AWS Cloud: Computing with CPUs and GPUs    
 
 ## Introduction
 
