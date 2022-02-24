@@ -74,7 +74,7 @@ aws configure set aws_secret_access_key your-secret-key
   ```
   Extract the files:
   ```bash
-  ML_based_Cloud_Retrieval_Use_Case.zip
+  unzip ML_based_Cloud_Retrieval_Use_Case.zip
   ```
   <br/>
 
