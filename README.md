@@ -25,8 +25,8 @@ This git help you achieve single machine computation and distributed (multiple) 
     - [Boto based approach to run the example on a single CPU with docker](./cpu-example/Boto_based_single_CPU_example_with_docker.md)
     - Boto based approach to run the example on multi-CPUs with docker (To be updated)
 - GPU Executions
-    - [Web based approach to run the example on a single CPU without docker](./gpu-example/Web_based_single_GPU_example_with_script.md)
-    - [Web based approach to run the example on multi-CPUs without docker](./gpu-example/Web_based_multi_GPUs_example_with_script.md)
+    - [Web based approach to run the example on a single GPU without docker](./gpu-example/Web_based_single_GPU_example_with_script.md)
+    - [Web based approach to run the example on multi-GPUs without docker](./gpu-example/Web_based_multi_GPUs_example_with_script.md)
     - [Web based approach to run the example on a single GPU with docker](./gpu-example/Web_based_single_GPU_example_with_docker.md)
     - [Web based approach to run the example on multi-GPUs with docker](./gpu-example/Web_based_multi_GPUs_example_with_docker.md)
 
