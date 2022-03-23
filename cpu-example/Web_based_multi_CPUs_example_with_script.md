@@ -1,5 +1,5 @@
 # Web based Execution of Distributed Computation with Script
-
+The machine learning application in this page uses a decision tree based cloud property retrieval from remote sensing data.
 1. Launch instances on [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home):   
 <p align="center"><img src="../docs/launchvms.png"/></p><br/>
 
