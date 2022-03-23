@@ -13,7 +13,7 @@ This git help you achieve single machine computation and distributed (multiple) 
 
 ## Table of Contents
 
-- CPU Executions
+- CPU Executions: The machine learning application in following pages uses a decision tree based cloud property retrieval from remote sensing data.
   - Web-based 
     - [Web based approach to run the example on a single CPU without docker](./cpu-example/Web_based_single_CPU_example_with_script.md)
     - [Web based approach to run the example on multi-CPUs without docker](./cpu-example/Web_based_multi_CPUs_example_with_script.md)
