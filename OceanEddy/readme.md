@@ -7,5 +7,5 @@ SageMaker is an aws Service that you can use for Jupyter like notebooks.
 Please follow the step-by-step instruction to configure SageMaker
 
 ### Step1
-![text-here](/images/1.png)
+![text-here](./images/1.png)
 
