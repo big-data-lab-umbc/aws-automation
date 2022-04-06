@@ -24,12 +24,14 @@ This git help you achieve single machine computation and distributed (multiple) 
     - Boto based approach to run the example on multi-CPUs without docker (To be updated)
     - [Boto based approach to run the example on a single CPU with docker](./cpu-example/Boto_based_single_CPU_example_with_docker.md)
     - Boto based approach to run the example on multi-CPUs with docker (To be updated)
-- GPU Executions: The machine learning application in following pages uses a deep unsupervised domain adaptation (UDA) model to transfer the knowledge learned from a labeled source domain to an unlabeled target domain. Involved software packages include Python 3.6, CUDA 10.1, cuDNN 7, Pytorch and Horovod with MPI.
+- GPU Executions: Involved software packages include Python 3.6, CUDA 10.1, cuDNN 7, Pytorch and Horovod with MPI.
+  - Web-based: The machine learning application in following pages uses a deep unsupervised domain adaptation (UDA) model to transfer the knowledge learned from a labeled source domain to an unlabeled target domain.  
     - [Web based approach to run the example on a single GPU without docker](./gpu-example/Web_based_single_GPU_example_with_script.md)
     - [Web based approach to run the example on multi-GPUs without docker](./gpu-example/Web_based_multi_GPUs_example_with_script.md)
     - [Web based approach to run the example on a single GPU with docker](./gpu-example/Web_based_single_GPU_example_with_docker.md)
     - [Web based approach to run the example on multi-GPUs with docker](./gpu-example/Web_based_multi_GPUs_example_with_docker.md)
-
+  - SageMaker-based: Ocean Eddy Application.
+    - [SageMaker based approach to run the example](./gpu-example/SageMaker_based_example_with_script.md)
 
 The following is an overall instruction for all our implementations. For detailed instructions of CPU executions and GPU exectutions, please go to folders [*cpu-example*](./cpu-example) and [*gpu-example*](./gpu-example).
 
