@@ -31,7 +31,7 @@ This git help you achieve single machine computation and distributed (multiple) 
     - [Web based approach to run the example on a single GPU with docker](./gpu-example/Web_based_single_GPU_example_with_docker.md)
     - [Web based approach to run the example on multi-GPUs with docker](./gpu-example/Web_based_multi_GPUs_example_with_docker.md)
   - SageMaker-based: Ocean Eddy Application.
-    - [SageMaker based approach to run the example](./gpu-example/SageMaker_based_example_with_script.md)
+    - [SageMaker based approach to run the example](./gpu-example/OceanEddy/SageMaker_based_example_with_script.md)
 
 The following is an overall instruction for all our implementations. For detailed instructions of CPU executions and GPU exectutions, please go to folders [*cpu-example*](./cpu-example) and [*gpu-example*](./gpu-example).
 
