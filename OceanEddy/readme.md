@@ -42,6 +42,5 @@ If you want to choose from a predefind role, make sure it is attached to the _Po
 
 ### Step6
 <p>***If you are creating a new IAM role, followin this step, otherwise skip and go to next step***</p>
-
-<p>At this point you should go with the default one, which is _(ii)_ Any S3 bucket. It is good as it allows to access any S3 bucket. Next, you can click on the **Create role** button.</p>
-![text-here](./images/9.png)
+<p>At this point you should go with the default one, which is _(ii)_ Any S3 bucket. It is good as it allows to access any S3 bucket. Next, you can click on the **Create role** button which will create an IAM Role and attach to Policy to SageMaker.</p>
+![text-here](./images/8_1.png)
