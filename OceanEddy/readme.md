@@ -18,11 +18,11 @@ second,
 ![text-here](./images/3.png)
  -->
 ### Step2
-Once you are logged in, you should select the right **region** (on top right corner) to make sure you are using all other related services or your team are in the same region. If this is a new account, default region is okay but next services onwards should be in the same region.
+Once you are logged in, you should select the right **Region** (on top right corner) to make sure you are using all other related services or your team are in the same region. If this is a new account, default region is okay but next services onwards should be in the same region.
 ![text-here](./images/4.png)
 
 ### Step3
-Now, you can click the **Services** _(with 9 dots)_ and choose **Machine Lerninf** from the dropdown. Then, click on the **Amazaon SageMaker** on the right side of the window to enter into the SageMaker page. Alternatively, you can type **sagemaker** in the search box, and you can click on the **Amazon SageMaker**. It will do the same.
+Now, you can click the **Services** _(with 9 dots)_ and choose **Machine Learning** from the dropdown. Then, click on the **Amazaon SageMaker** on the right side of the window to enter into the SageMaker page. Alternatively, you can type **sagemaker** in the search box, and you can click on the **Amazon SageMaker**. It will do the same.
 ![text-here](./images/5.png)
 ![text-here](./images/6.png)
 
