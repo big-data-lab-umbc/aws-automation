@@ -26,3 +26,12 @@ second,
 ### Step6
 ![text-here](./images/6.png)
 
+### Step7
+![text-here](./images/7.png)
+
+### Step8
+![text-here](./images/8.png)
+
+### Step9
+![text-here](./images/9.png)
+
