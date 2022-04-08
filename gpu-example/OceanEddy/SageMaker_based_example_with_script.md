@@ -1,22 +1,22 @@
-# Configure SageMaker
+# Configuring SageMaker for Ocean Eddy classification model
 
-SageMaker is an aws Service that allows you to use notebooks (like jupyter notebooks).
+SageMaker is an aws Service that allows you to use Jupyter like notebooks.
 
 ## Installation
 
 Please follow the step-by-step instruction to configure SageMaker
 
-### Step1
+### Step1 ***Sigining in!***
 
 First, go to **www.aws.amazon.com** then click **sign in** to the console (on top right corner). Use your credentials (username, password, etc.) to login to the aws console.
 
-### Step2
+### Step2 ***Region selection***
 
 Once you are logged in, you should select the right **Region** (on top right corner) to make sure you are using all other related services or your team are in the same region. If this is a new account, default region is okay but next services onwards should be in the same region.
 
 ![text-here](./images/4.png)
 
-### Step3
+### Step3 ***Getting into SageMaker console!***
 
 Now, you can click the **Services** _(with 9 dots)_ and choose **Machine Learning** from the dropdown. Then, click on the **Amazaon SageMaker** on the right side of the window to enter into the SageMaker page. Alternatively, you can type **sagemaker** in the search box _(second image)_, and you can click on the **Amazon SageMaker**. It will do the same.
 
@@ -24,13 +24,13 @@ Now, you can click the **Services** _(with 9 dots)_ and choose **Machine Learnin
 
 ![text-here](./images/6.png)
 
-### Step4
+### Step4 ***Initiating Notebook!***
 
 Great! you are in SageMaker console. To get a notebook started, click on the **Notebook** in the left panel and you will see **Notebook instances**. Then, on the top right corner you need to click on the orange button saying **Create notebook instance**.
 
 ![text-here](./images/7.png)
 
-### Step5
+### Step5 ***Configuring your notebook!***
 
 In this part, you have to do 3 things. At first _i)_ give a notebook instance name _(please note: this name has to be unique in the selected region, otherwise it will through errors)_. The next is you have to select a _(ii)_ Notebook instance type, that allows you to select the type of instance of your choice. Finally, an _(iii)_ IAM role should be selected or created. 
 
@@ -44,7 +44,7 @@ If you want to choose from a predefind role, make sure it is attached to the _Po
 
 ![text-here](./images/8_1.png)
 
-### Step6
+### Step6 ***Creating IAM role to access SageMaker with S3***
 
 **If you are creating a new IAM role, follow this step6, otherwise skip and go to next step**.
 
@@ -52,13 +52,13 @@ At this point you should go with the default one, which is _(ii)_ Any S3 bucket.
 
 ![text-here](./images/9.png)
 
-### Step7
+### Step7 ***Start your notebook!***
 
 Now you are in the SageMaker and you already have your notebook/s listed. If it is not running, choose the one you want to run and click start. Remember, it may take 10 to 20 minutes to get running based on your instance type! Once it is ready to run, you will see **Open Jupyter | Open JupyterLab**. You can click either of those.
 
 ![text-here](./images/10.png)
 
-### Step8
+### Step8 ***Working with notebook!***
 
 When you click **Open Jupyter** you will see the following window, click upload to upload the notebook you want to work with. The successfully uploaded notebook will appear under the Files _(next image)_. Now you can click on the uploaded notebook _(i.e., eddy_classidfication_crossvalidation.ipynb)_.
 
@@ -66,13 +66,13 @@ When you click **Open Jupyter** you will see the following window, click upload 
 
 ![text-here](./images/12.png)
 
-### Step9
+### Step9 ***Choose the right Kernel for your notebook!***
 
 When the notebook opens, you will see the contents of it. Here, you need to select the runtime environment (kernel) from the top right corner. In this case I selected the conda_python37 which I needed.
 
 ![text-here](./images/13.png)
 
-### Step10
+### Step10 ***Sigining in!***
 
 In this step, we need to go back to **aws Services** to launch **S3**. Please follow the steps _(as, i, ii, and iii)_ to go to **S3**. once you clicked **S3**, you will be in **S3** console where you can create bucket or choose bucket by clicking the **Create bucket** button _(second image)_.
 
