@@ -51,3 +51,56 @@ If you want to choose from a predefind role, make sure it is attached to the _Po
 At this point you should go with the default one, which is _(ii)_ Any S3 bucket. It is good as it allows to access any S3 bucket. Next, you can click on the **Create role** button which will create an IAM Role and attach to Policy to SageMaker.
 
 ![text-here](./images/9.png)
+
+### Step7
+
+Now you are in the SageMaker and you already have your notebook/s listed. If it is not running, choose the one you want to run and click start. Remember, it may take 10 to 20 minutes to get running based on your instance type! Once it is ready to run, you will see **Open Jupyter | Open JupyterLab**. You can click either of those.
+
+![text-here](./images/10.png)
+
+### Step8
+
+When you click **Open Jupyter** you will see the following window, click upload to upload the notebook you want to work with. The successfully uploaded notebook will appear under the Files _(next image)_. Now you can click on the uploaded notebook _(i.e., eddy_classidfication_crossvalidation.ipynb)_.
+
+![text-here](./images/11.png)
+
+![text-here](./images/12.png)
+
+### Step9
+
+When the notebook opens, you will see the contents of it. Here, you need to select the runtime environment (kernel) from the top right corner. In this case I selected the conda_python37 which I needed.
+
+![text-here](./images/13.png)
+
+### Step10
+
+In this step, we need to go back to **aws Services** to launch **S3**. Please follow the steps _(as, i, ii, and iii)_ to go to **S3**. once you clicked **S3**, you will be in **S3** console where you can create bucket or choose bucket by clicking the **Create bucket** button _(second image)_.
+
+![text-here](./images/15.png)
+
+![text-here](./images/16.png)
+
+### Step11
+
+If you want to create bucket, enter a _(i)_ **Bucket name** and click Create bucket or _(ii)_ Choose bucket, if you already have one. If you click to Choose a bucket you will be redirected to Choose bucket page _(second image)_ where can select the bucket and click **Choose bucket**. 
+
+![text-here](./images/17.png)
+
+![text-here](./images/18.png)
+
+### Step12
+
+Once the bucket creation/selection is done, we are back to SageMaker notebook to access the bucket. To do so we need to copy the data from S3 to SageMaker using `!aws s3 cp s3://your/s3/dir/ destDir --recursive` command. This command has four parts, `!aws s3 cp` is the copy command, `s3://your/s3/dir/` is the S3 URI _(example in second image on how to get the URI)_, `destDir` is the destination directiry in SageMaker where you want to store the data _(data is destination dir in our case as an example, ii)_, and `--recursive` is a flag to copy all file recursively from S3 bucket.
+
+
+![text-here](./images/19.png)
+
+![text-here](./images/18_1.png)
+
+### Step13
+
+Fianlly, you can run the notebook. You can either run cell by cell using **cmd + return** or **shift + return** _(mac keyboard)_ OR **ctrl + enter** or **shift + enter** _(in Windows keyboard)_.
+
+![text-here](./images/14.png)
+
+***Congratulations! You are all set!***
