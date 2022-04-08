@@ -99,7 +99,7 @@ Once the bucket creation/selection is done, we are back to SageMaker notebook to
 
 ### Step13 ***-Run your code!-***
 
-Fianlly, you can run the notebook. You can either run cell by cell using **cmd + return** or **shift + return** _(in mac)_, **ctrl + enter** or **shift + enter** _(in windows)_ OR Choose to ** Run all cells** from Run menu!
+Fianlly, you can run the notebook. You can either run cell by cell using **cmd + return** or **shift + return** _(in mac)_, **ctrl + enter** or **shift + enter** _(in windows)_ OR Choose to ** Run All** from Run menu!
 
 ![text-here](./images/14.png)
 
