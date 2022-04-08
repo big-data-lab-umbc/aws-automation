@@ -6,7 +6,7 @@ SageMaker is an aws Service that allows you to use Jupyter like notebooks.
 
 Please follow the step-by-step instruction to configure SageMaker
 
-### Step1 ***Sigining in!***
+### Step1 ***-Sigining in!-***
 
 First, go to **www.aws.amazon.com** then click **sign in** to the console (on top right corner). Use your credentials (username, password, etc.) to login to the aws console.
 
