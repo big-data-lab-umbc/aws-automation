@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo apt-get update 
-sudo apt-get install -y software-properties-common 
+sudo apt-get update
+sudo apt-get install -y software-properties-common
 
 sudo apt-get install -y python3-pip
 sudo apt-get install -y git wget zip unzip vim curl
@@ -17,5 +17,7 @@ pip3 uninstall -y click
 pip3 install dask-ml click==7
 
 #get code and data
-wget -P /home/ubuntu/ https://kddworkshop.s3.us-west-2.amazonaws.com/ML_based_Cloud_Retrieval_Use_Case.zip
-unzip /home/ubuntu/ML_based_Cloud_Retrieval_Use_Case.zip -d /home/ubuntu/
+wget -P /home/ubuntu/ https://ai-4-atmosphere-remote-sensing.s3.amazonaws.com/satellite_collocation-1.0.zip
+unzip /home/ubuntu/satellite_collocation-1.0.zip -d /home/ubuntu/
+cd /home/ubuntu/satellite_collocation
+python setup.py install

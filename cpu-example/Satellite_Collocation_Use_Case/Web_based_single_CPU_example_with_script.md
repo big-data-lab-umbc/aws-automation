@@ -1,5 +1,12 @@
 # Web based Execution on a Single CPU with Script
-The machine learning application in this page uses a decision tree based cloud property retrieval from remote sensing data.
+The application in this page explains how to collocate remote sensing data from multiple satellites. We mainly use the [satellite_collocation library](https://github.com/AI-4-atmosphere-remote-sensing/satellite_collocation).
+
+1. (Optional) Upload raw data to be collocated to S3:
+    ```bash   
+    aws s3 cp --recursive CALIPSO-L2-01km-CLayer s3://ai-4-atmosphere-remote-sensing/CALIPSO-L2-01km-CLayer
+    aws s3 cp --recursive VNP02MOD-VIIRS-Attributes s3://ai-4-atmosphere-remote-sensing/VNP02MOD-VIIRS-Attributes
+    aws s3 cp --recursive VNP03MOD-VIIRS-Coordinates s3://ai-4-atmosphere-remote-sensing/VNP03MOD-VIIRS-Coordinates
+    ```
 
 1. Launch instances on [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home):   
 <p align="center"><img src="../docs/launchvms.png"/></p><br/>
@@ -40,14 +47,6 @@ sudo bash bootstrap.sh
     ```bash
     cd ML_based_Cloud_Retrieval_Use_Case/Code && /usr/bin/python3.6 ml_based_cloud_retrieval_with_data_preprocessing.py
     ```
-
-11. Run application via Jupyter Notebook (optional):
-
-    ```bash
-    pip3 install jupyterlab
-    jupyter-lab --ip=*
-    ```
-    Now you can open your web browser to open JuypterLab based on it domain name and Jupyter token. Here is an example is http://ec2-54-186-96-63.us-west-2.compute.amazonaws.com:8888/?token=b9143e017355e42660cbed9f269793fba8837a6f0c0f03ef
 
 12. Terminate the virtual machine on EC2 when finishing experiments.
 <p align="center"><img src="../docs/terminate.png"/></p>
