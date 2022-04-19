@@ -3,11 +3,9 @@
 apt-get update
 apt-get install -y sudo
 sudo apt-get install -y software-properties-common
-sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
 
 sudo apt-get install -y python3-pip
-sudo apt-get install -y git wget zip unzip vim curl
-
 sudo apt-get install -y git wget curl zip unzip vim apt-utils gcc make libc-dev musl-dev g++
 
 python3 -m pip install pip --upgrade
