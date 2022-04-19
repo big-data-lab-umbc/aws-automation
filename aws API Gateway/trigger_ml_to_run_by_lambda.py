@@ -4,15 +4,16 @@ import time
 import sys
 import os
 
-credentials = ["us-east-2","",""]   #region,access_key,secret_key
-InstanceId = 'i-0aafdf08fb579c325'
+credentials = ["","",""]   #region,access_key,secret_key >> enter your credentials
+InstanceId = "" #your ec2 instance id here
+
 
 def get_ec2_instances_id(region,access_key,secret_key):
     ec2_conn = boto3.resource('ec2',region_name=region,aws_access_key_id=access_key,aws_secret_access_key=secret_key)
-
+    
     if ec2_conn:
         for instance in ec2_conn.instances.all():
-            if instance.state['Name'] == 'running' and instance.security_groups[0]['GroupName'] == 'default':
+            if instance.state['Name'] == 'running' and instance.security_groups[0]['GroupName'] == '': #your security group name (i.e., 'default')
                 masterInstanceId = instance.instance_id
                 print("Master Instance Id is ",masterInstanceId)
         return masterInstanceId
@@ -20,56 +21,28 @@ def get_ec2_instances_id(region,access_key,secret_key):
         print('Region failed', region)
         return None
 
-    #return InstanceId
-
 def send_command_to_master(InstanceId,command,ssm_client):
     print("Ssm run command: ",command)
     response = ssm_client.send_command(InstanceIds=[InstanceId],DocumentName="AWS-RunShellScript",Parameters={'commands': [command]})
 
-    # command_id = response['Command']['CommandId']
-    # waiter = ssm_client.get_waiter("command_executed")
-
-    # while True:
-    #     try:
-    #         waiter.wait(CommandId=command_id,InstanceId=InstanceId)
-    #         break
-    #     except:
-    #         print("SSM in progress")
-    #         time.sleep(5)
-
-    # output = ssm_client.get_command_invocation(CommandId=command_id,InstanceId=InstanceId)
-    # if output['Status'] == 'Success':
-    #     print('SSM success')
-    # else:
-    #     print('SSM failed')
-
-
 def lambda_handler(event, context):
     #event is PAYLOAD
-    masterInstanceId = get_ec2_instances_id(credentials[0],credentials[1],credentials[2])
+    # masterInstanceId = get_ec2_instances_id(credentials[0],credentials[1],credentials[2])
+    masterInstanceId = InstanceId 
     ssm_client = boto3.client('ssm',region_name=credentials[0],aws_access_key_id=credentials[1],aws_secret_access_key=credentials[2])
-
+    
     send_command_to_master(masterInstanceId,\
-        "docker run --rm -v /home/ubuntu/ML_based_Cloud_Retrieval_Use_Case:/root/ML_based_Cloud_Retrieval_Use_Case starlyxxx/dask-decision-tree-example:latest sh -c 'cd /root/ML_based_Cloud_Retrieval_Use_Case/Code && /usr/bin/python3.6 ml_based_cloud_retrieval_with_data_preprocessing.py >> result.txt'",\
+        "cd /home/ubuntu/satellite_collocation-main && /usr/bin/python3 examples/collocate_viirs_calipso_dask_cluster/collocation_dask_local.py -tp ../satellite_collocation_sample_data/CALIPSO-L2-01km-CLayer/ -sgp ../satellite_collocation_sample_data/VNP03MOD-VIIRS-Coordinates/ -sdp ../satellite_collocation_sample_data/VNP02MOD-VIIRS-Attributes/ -sp ../satellite_collocation_sample_data/collocation-output/",\
+        ssm_client)
+    
+    send_command_to_master(masterInstanceId,\
+        "aws s3 cp /home/ubuntu/satellite_collocation_sample_data/collocation-output s3://kddworkshop/seraj_task1_output --recursive",\
         ssm_client)
     print(event)
-    print(context)
-
-    # uploadByteStream = bytes(json.dumps(transactionToUpload).encode('UTF-8'))
-    # s3.put_object(Bucket=bucket_metadata, Key=fileName, Body=uploadByteStream)
-    # print("Hybrid learning Lambda Metadata <%s> sends to <%s>"%(fileName, bucket_metadata))
-
+    # print(context)
+    
+        
     return {
         'statusCode': 200,
         'body': json.dumps('Action Completed!')
     }
-
-
-# def s3_put_object(filename,path):
-#     return "aws s3 cp /home/ubuntu/%s s3://%s"%(filename,path)
-
-# # copy ensemble_result from VM to S3
-# send_command_to_master(masterInstanceId,\
-#     s3_put_object(event['Configurations']['output_result']["filename"],event['Configurations']['output_result']['bucketname']+"/"+event['Configurations']['output_result']['prefix']),\
-#     ssm_client)
-# result_version = s3_object_version(event['Configurations']['output_result']["bucketname"],event['Configurations']['output_result']["prefix"])
