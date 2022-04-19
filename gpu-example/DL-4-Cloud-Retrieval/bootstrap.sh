@@ -6,7 +6,7 @@ sudo apt-get install -y software-properties-common
 sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
 
 sudo apt-get install -y python3-pip
-sudo apt-get install -y git wget curl zip unzip vim apt-utils gcc make libc-dev musl-dev g++
+sudo apt-get install -y awscli git wget curl zip unzip vim apt-utils gcc make libc-dev musl-dev g++
 
 python3 -m pip install pip --upgrade
 python3 -m pip install wheel
@@ -47,3 +47,15 @@ pip3 install torch torchvision
 HOROVOD_WITH_PYTORCH=1 HOROVOD_GPU_OPERATIONS=NCCL HOROVOD_WITH_MPI=1 pip install --no-cache-dir horovod[pytorch]
 
 sudo cp /usr/local/cuda-10.1/compat/* /usr/local/cuda/lib64/
+
+#get and install code for cloud-phase-prediction-main
+wget -P /home/ubuntu/ https://ai-4-atmosphere-remote-sensing.s3.amazonaws.com/cloud-phase-prediction-main.zip
+unzip /home/ubuntu/cloud-phase-prediction-main.zip -d /home/ubuntu/
+cd /home/ubuntu/cloud-phase-prediction-main
+sudo pip install .
+
+#get and install code for DL_3d_cloud_retrieval
+wget -P /home/ubuntu/ https://ai-4-atmosphere-remote-sensing.s3.amazonaws.com/DL_3d_cloud_retrieval.zip
+unzip /home/ubuntu/DL_3d_cloud_retrieval.zip -d /home/ubuntu/
+cd /home/ubuntu/DL_3d_cloud_retrieval
+sudo pip install -r requirements.txt
