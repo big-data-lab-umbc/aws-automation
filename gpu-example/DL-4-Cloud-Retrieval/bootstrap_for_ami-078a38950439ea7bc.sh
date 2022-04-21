@@ -1,4 +1,7 @@
 #!/bin/bash
+#commands to run the programs on top of ami-078a38950439ea7bc: Deep Learning AMI GPU TensorFlow 2.7.0 (Amazon Linux 2) 20220316
+#ami-078a38950439ea7bc (64-bit (x86))
+#Built with AWS optimized TensorFlow, NVIDIA CUDA, cuDNN, NCCL, GPU Driver, Docker, NVIDIA-Docker and EFA support.
 
 HOROVOD_WITH_PYTORCH=1 HOROVOD_GPU_OPERATIONS=NCCL HOROVOD_WITH_MPI=1 /usr/bin/python3.8 -m pip install --no-cache-dir horovod[pytorch,tensorflow,keras]
 
@@ -7,7 +10,7 @@ wget -P /home/ec2-user/ https://ai-4-atmosphere-remote-sensing.s3.amazonaws.com/
 unzip /home/ec2-user/cloud-phase-prediction-main.zip -d /home/ec2-user/
 cd /home/ec2-user/cloud-phase-prediction-main && /usr/bin/python3.8 -m pip install .
 
-#run commands on EC2 instance 
+#run commands on EC2 instance
 cd /home/ec2-user/cloud-phase-prediction-main && /usr/bin/python3.8 train.py --training_data_path='./example/training_data/'  --model_saving_path='./saved_model/'
 aws s3 cp --acl public-read /home/ec2-user/cloud-phase-prediction-main/saved_model s3://ai-4-atmosphere-remote-sensing/cloud-phase-prediction_result --recursive
 
