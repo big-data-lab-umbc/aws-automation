@@ -38,13 +38,18 @@ tar -xzvf openmpi-4.0.0.tar.gz
 cd openmpi-4.0.0/ && ./configure --prefix=/usr/local/ && sudo make all install
 
 sudo apt update
+wget https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.2.1.32/10.2_06072021/Ubuntu18_04-x64/libcudnn8_8.2.1.32-1+cuda10.2_amd64.deb
+
+
 wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libnccl-dev_2.4.7-1+cuda10.1_amd64.deb
 wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/libnccl2_2.4.7-1+cuda10.1_amd64.deb
 sudo dpkg -i libnccl2_2.4.7-1+cuda10.1_amd64.deb
 sudo dpkg -i libnccl-dev_2.4.7-1+cuda10.1_amd64.deb
 
 pip3 install torch torchvision
-HOROVOD_WITH_PYTORCH=1 HOROVOD_GPU_OPERATIONS=NCCL HOROVOD_WITH_MPI=1 pip install --no-cache-dir horovod[pytorch]
+HOROVOD_WITH_PYTORCH=1 HOROVOD_GPU_OPERATIONS=NCCL HOROVOD_WITH_MPI=1 pip3 install --no-cache-dir horovod[pytorch,tensorflow,keras]
+
+pip3 install --upgrade tensorflow
 
 sudo cp /usr/local/cuda-10.1/compat/* /usr/local/cuda/lib64/
 
@@ -52,10 +57,19 @@ sudo cp /usr/local/cuda-10.1/compat/* /usr/local/cuda/lib64/
 wget -P /home/ubuntu/ https://ai-4-atmosphere-remote-sensing.s3.amazonaws.com/cloud-phase-prediction-main.zip
 unzip /home/ubuntu/cloud-phase-prediction-main.zip -d /home/ubuntu/
 cd /home/ubuntu/cloud-phase-prediction-main
-sudo pip install .
+sudo pip3 install .
+
+#run commands on EC2 instance i-0e3e1b3ee379e5346
+cd /home/ubuntu/cloud-phase-prediction-main && /usr/bin/python3 train.py --training_data_path='./example/training_data/'  --model_saving_path='./saved_model/'
+aws s3 cp --acl public-read /home/ubuntu/cloud-phase-prediction-main/saved_model s3://ai-4-atmosphere-remote-sensing/cloud-phase-prediction_result --recursive
 
 #get and install code for DL_3d_cloud_retrieval
-wget -P /home/ubuntu/ https://ai-4-atmosphere-remote-sensing.s3.amazonaws.com/DL_3d_cloud_retrieval.zip
-unzip /home/ubuntu/DL_3d_cloud_retrieval.zip -d /home/ubuntu/
-cd /home/ubuntu/DL_3d_cloud_retrieval
-sudo pip install -r requirements.txt
+wget -P /home/ubuntu/ https://ai-4-atmosphere-remote-sensing.s3.amazonaws.com/DL_3d_cloud_retrieval-main.zip
+unzip /home/ubuntu/DL_3d_cloud_retrieval-main.zip -d /home/ubuntu/
+cd /home/ubuntu/DL_3d_cloud_retrieval-main
+sudo pip3 install -r requirements.txt
+
+#run commands on EC2 instance i-0e3e1b3ee379e5346
+cd /home/ubuntu/DL_3d_cloud_retrieval-main && python3 COT_retrieval/test.py --cot_file_name=example/training_data/data_cot.h5 --path_1d_retrieval=retrieved_COT/ --path_model=saved_model/lstm/model-1.h5 --path_predictions=saved_model/bilstm_transformer_embedding/ --radiance_test=example/testing_data/X_test_1.npy --cot_test=example/testing_data/y_test_1.npy --path_plots=plots/bilstm_with_transformer_embedding/
+
+python3 COT_retrieval/test.py --cot_file_name=example/training_data/data_cot.h5 --path_1d_retrieval=retrieved_COT/ --path_model=saved_model/lstm/model-1.h5 --path_predictions=saved_model/bilstm_transformer_embedding/ --radiance_test=example/testing_data/X_test_1.npy --cot_test=example/testing_data/y_test_1.npy --path_plots=plots/bilstm_with_transformer_embedding/
