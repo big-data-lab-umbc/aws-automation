@@ -11,8 +11,6 @@ For GPU case, we use **Deep Learning Base AMI (Ubuntu 16.04) Version 40.0** in "
 3. Choose an Instance Type  
 Based on your purpose, AWS provides various instance types on [https://aws.amazon.com/ec2/instance-types/](https://aws.amazon.com/ec2/instance-types/). For GPU application, we recommand to use p3.2xlarge instance.
 
-
-
 4. Configure Number of instances  
 We use 1 instance for single machine computation.
 <p align="center"><img src="../docs/instancenumber.png"/></p><br/>
@@ -111,3 +109,6 @@ horovodrun --verbose -np 1 -H localhost:1 /usr/bin/python3.6 main.py --config De
 
 <p align="center"><img src="../docs/terminate.png"/></p>
 <br/>
+
+## Additional useful commands:
+-```nvidia-smi``` command can show memory usage, GPU utilization and temperature of Nvidia GPU. 
