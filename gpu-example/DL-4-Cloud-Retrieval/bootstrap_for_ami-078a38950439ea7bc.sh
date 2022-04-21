@@ -21,5 +21,5 @@ cd /home/ec2-user/DL_3d_cloud_retrieval-main && /usr/bin/python3.8 -m pip instal
 
 #run commands on EC2 instance
 cd /home/ec2-user/DL_3d_cloud_retrieval-main && mkdir -p plot/lstm && /usr/bin/python3.8 COT_retrieval/test_example.py --cot_file_name=example/training_data/data_cot.h5 --path_1d_retrieval=example/retrieved_COT/ --path_model=saved_model/lstm/model1.h5 --path_predictions=saved_model/lstm/ --radiance_test=example/testing_data/X_test_1.npy --cot_test=example/testing_data/y_test_1.npy --path_plots=plot/lstm/
-aws s3 cp --acl public-read /home/ec2-user/DL_3d_cloud_retrieval-main/saved_model s3://ai-4-atmosphere-remote-sensing/DL_3d_cloud_retrieval-outputs --recursive
-aws s3 cp --acl public-read /home/ec2-user/DL_3d_cloud_retrieval-main/plot s3://ai-4-atmosphere-remote-sensing/DL_3d_cloud_retrieval-outputs --recursive
+aws s3 cp --acl public-read /home/ec2-user/DL_3d_cloud_retrieval-main/saved_model s3://ai-4-atmosphere-remote-sensing/DL_3d_cloud_retrieval-outputs/saved_model --recursive
+aws s3 cp --acl public-read /home/ec2-user/DL_3d_cloud_retrieval-main/plot s3://ai-4-atmosphere-remote-sensing/DL_3d_cloud_retrieval-outputs/plot --recursive
