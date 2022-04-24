@@ -5,7 +5,7 @@ import sys
 import os
 
 credentials = ["","",""]   #insert region,access_key,secret_key
-InstanceId = '' #insert your EC2 instance ID
+InstanceId = 'i-0b83239ada0a8ae1d' #EC2 instance ID
 
 def get_ec2_instances_id(region,access_key,secret_key):
     ec2_conn = boto3.resource('ec2',region_name=region,aws_access_key_id=access_key,aws_secret_access_key=secret_key)
