@@ -20,10 +20,6 @@ import cv2
 import keras
 import os
 
-# # code_path=os.path.abspath(os.getcwd())
-# # data_path = './Datasets/Gravity_waves/data' 
-# # data_path = ('/content/drive/MyDrive/ESIP-Ocean-Eddy-Detection/data')
-# # data_path = ('/content/drive/MyDrive/ESIP-Ocean-Eddy-Detection/new-sar-data')
 data_path = ('/content/drive/MyDrive/ESIP-Ocean-Eddy-Detection/demo_png')
 img_path= data_path
 os.chdir(img_path)
@@ -45,7 +41,6 @@ model.add(layers.Flatten())
 model.add(layers.Dense(8, activation='relu'))
 model.add(layers.Dense(1, activation='sigmoid'))
 plot_model(model, to_file='model_plot11.png', show_shapes=True, show_layer_names=True)
-
 model.summary()
 
 batch_size = 16
