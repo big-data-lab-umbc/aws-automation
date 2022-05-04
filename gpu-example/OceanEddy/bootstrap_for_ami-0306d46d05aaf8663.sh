@@ -16,4 +16,4 @@ HOROVOD_GPU_OPERATIONS=NCCL HOROVOD_WITH_MPI=1 python3 -m pip install --no-cache
 #run horovod version
 horovodrun --verbose -np 1 -H localhost:1 python3 eddy_classification_task_vseraj_horovod.py
 
-horovodrun --verbose -np 2 -H localhost:1,localhost:2 python3 eddy_classification_task_vseraj_horovod.py
+horovodrun --verbose -np 2 -H localhost:2 python3 eddy_classification_task_vseraj_horovod.py

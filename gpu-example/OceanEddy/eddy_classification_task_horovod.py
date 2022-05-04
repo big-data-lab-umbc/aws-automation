@@ -64,12 +64,12 @@ train_datagen = ImageDataGenerator(
         rescale=1./255,
         shear_range=0.2,
         zoom_range=0.2,
-        horizontal_flip=False) ## cannot do flip
+        horizontal_flip=False, dtype = tf.float32) ## cannot do flip
 
 # this is the augmentation configuration we will use for testing:
 # only rescaling
 test_datagen = ImageDataGenerator(
-        rescale=1./255)
+        rescale=1./255, dtype = tf.float32)
 
 # this is a generator that will read pictures found in
 # subfolers of 'data/train', and indefinitely generate
@@ -86,7 +86,7 @@ validation_generator = test_datagen.flow_from_directory(
         '/home/ubuntu/ocean-eddy/data/demo_png/validation',
         target_size=(256, 256),
         color_mode = 'grayscale',
-        batch_size=1,
+        batch_size=batch_size,
         class_mode='binary')
 
 # this is a similar generator, for validation data
@@ -94,7 +94,7 @@ test_generator = test_datagen.flow_from_directory(
         '/home/ubuntu/ocean-eddy/data/demo_png/test',
         target_size=(256, 256),
         color_mode = 'grayscale',
-        batch_size=1,
+        batch_size=batch_size,
         class_mode=None,
         shuffle=False)
 
@@ -117,17 +117,14 @@ if hvd.rank() == 0:
    verbose = 2
    callbacks.append(keras.callbacks.ModelCheckpoint('./checkpoint-{epoch}.h5'))
 else:
-   verbose = 0
-
-tf.config.run_functions_eagerly(True)
-tf.data.experimental.enable_debug_mode()
+   verbose = 2
 
 model.fit(
         train_generator,
-        steps_per_epoch=10 // batch_size,
+        steps_per_epoch=8 // hvd.size(),
         epochs=5,
         validation_data=validation_generator,
-        validation_steps=5 // batch_size,
+        validation_steps=5 // hvd.size(),
         verbose=verbose,
         callbacks=callbacks)
 
