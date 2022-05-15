@@ -28,7 +28,6 @@ import cv2
 import keras
 import os
 
-data_path = ('/content/drive/MyDrive/ESIP-Ocean-Eddy-Detection/demo_png')
 data_path = ('/content/drive/MyDrive/path_to_dir')
 img_path= data_path
 os.chdir(img_path)
@@ -45,7 +44,6 @@ from numpy.random import seed
 seed(1)
 import tensorflow
 tensorflow.random.set_seed(2)
-#https://machinelearningmastery.com/reproducible-results-neural-networks-keras/
 
 model = models.Sequential()
 model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(256, 256, 1)))
@@ -80,7 +78,6 @@ test_datagen = ImageDataGenerator(
 # subfolers of 'data/train', and indefinitely generate
 # batches of augmented image data
 train_generator = train_datagen.flow_from_directory(
-        # '/content/drive/MyDrive/ESIP-Ocean-Eddy-Detection/demo_png/train',  # this is the target directory
         '/content/drive/MyDrive/path_to_dir/train' # this is the target directory
         target_size=(256, 256),  # all images will be resized to 150x150
         color_mode = 'grayscale',
@@ -89,7 +86,6 @@ train_generator = train_datagen.flow_from_directory(
 
 # this is a similar generator, for validation data
 validation_generator = test_datagen.flow_from_directory(
-        # '/content/drive/MyDrive/ESIP-Ocean-Eddy-Detection/demo_png/validation',
         '/content/drive/MyDrive/path_to_dir/validation',
         target_size=(256, 256),
         color_mode = 'grayscale',
@@ -98,7 +94,6 @@ validation_generator = test_datagen.flow_from_directory(
 
 # this is a similar generator, for validation data
 test_generator = test_datagen.flow_from_directory(
-        # '/content/drive/MyDrive/ESIP-Ocean-Eddy-Detection/demo_png/test',
         '/content/drive/MyDrive/path_to_dir/test',
         target_size=(256, 256),
         color_mode = 'grayscale',
