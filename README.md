@@ -14,7 +14,7 @@ This git help you achieve single machine computation and distributed (multiple) 
 ## Table of Contents
 
 - CPU Executions: The machine learning application in following pages uses a decision tree based cloud property retrieval from remote sensing data. Involved software packages include Python 3.6, scikit-learn and Dask.
-  - Web-based 
+  - Web-based
     - [Web based approach to run the example on a single CPU without docker](./cpu-example/Web_based_single_CPU_example_with_script.md)
     - [Web based approach to run the example on multi-CPUs without docker](./cpu-example/Web_based_multi_CPUs_example_with_script.md)
     - [Web based approach to run the example on a single CPU with docker](./cpu-example/Web_based_single_CPU_example_with_docker.md)
@@ -30,6 +30,8 @@ This git help you achieve single machine computation and distributed (multiple) 
     - [Web based approach to run the example on multi-GPUs without docker](./gpu-example/Web_based_multi_GPUs_example_with_script.md)
     - [Web based approach to run the example on a single GPU with docker](./gpu-example/Web_based_single_GPU_example_with_docker.md)
     - [Web based approach to run the example on multi-GPUs with docker](./gpu-example/Web_based_multi_GPUs_example_with_docker.md)
+  - Lambda Function based Executions: AWS Lambda Function allows execution without explicitly requiring resources like EC2.
+      - [Lambda Function based approach to do machine learning based cloud property retrieval](./lambda-example/cloud_property_retrieval_aws/ReadMe.md)
   - SageMaker-based: Ocean Eddy Application.
     - [SageMaker based approach to run the example](./gpu-example/OceanEddy/SageMaker_based_example_with_script.md)
 
@@ -66,7 +68,7 @@ We use 1 instance for single machine computation, and 2 instances for distribute
 8. SSH into your instance
 <p align="center"><img src="docs/ssh.png"/></p>
 
-9. Install [Docker](https://docs.docker.com/engine/install/ubuntu/) 
+9. Install [Docker](https://docs.docker.com/engine/install/ubuntu/)
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -118,7 +120,7 @@ aws configure set aws_secret_access_key your-secret-key
   (wget https://kddworkshop.s3.us-west-.amazonaws.com/ML_based_Cloud_Retrieval_Use_Case.zip)
   ```
 
-  Extract the files: 
+  Extract the files:
 
   ```bash
   unzip ML_based_Cloud_Retrieval_Use_Case.zip
@@ -175,13 +177,13 @@ nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/Mul
   sudo mkdir -p /mnt/share/ssh && sudo cp ~/.ssh/* /mnt/share/ssh
   ```
 
-  - Primary worker VM: 
+  - Primary worker VM:
 
   ```bash
   nvidia-docker run -it --network=host -v /mnt/share/ssh:/root/.ssh -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest /bin/bash
   ```
 
-  - Secondary workers VM: 
+  - Secondary workers VM:
 
   ```bash
   nvidia-docker run -it --network=host -v /mnt/share/ssh:/root/.ssh -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/MultiGpus-Domain-Adaptation-main -v /home/ubuntu/office31:/root/office31 starlyxxx/horovod-pytorch-cuda10.1-cudnn7:latest bash -c "/usr/sbin/sshd -p 12345; sleep infinity"
@@ -199,13 +201,13 @@ nvidia-docker run -it -v /home/ubuntu/MultiGpus-Domain-Adaptation-main:/root/Mul
 
       - Run dask cluster on both VMs in background:
 
-        - VM 1: 
+        - VM 1:
 
         ```bash
         dask-scheduler & dask-worker <your-dask-scheduler-address> &
         ```
 
-        - VM 2: 
+        - VM 2:
 
         ```bash
         dask-worker <your-dask-scheduler-address> &
@@ -257,14 +259,14 @@ pip3 install boto fabric2 scanf IPython invoke
 pip3 install Werkzeug --upgrade
 ```
 
-### Run single machine computation: 
+### Run single machine computation:
 1. Configuration
 
 Use your customized configurations. Replace default values in <./config/config.ini>  
 
 2. Start IPython   
 ```bash
-python3 run_interface.py 
+python3 run_interface.py
 ```
 
 3. Launch VMs on EC2 and wait for initializing
@@ -273,17 +275,17 @@ LaunchInstances()
 ```
 4. Install required packages on VMs
 ```bash
-InstallDeps() 
+InstallDeps()
 ```
 
-5. Automatically run Single VM ML Computing 
+5. Automatically run Single VM ML Computing
 ```bash
-RunSingleVMComputing() 
+RunSingleVMComputing()
 ```
 
 6. Terminate all VMs on EC2 when finishing experiments.
 ```bash
-TerminateAll() 
+TerminateAll()
 ```
 
 
