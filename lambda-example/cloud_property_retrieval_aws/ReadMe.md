@@ -3,12 +3,14 @@
 
 This document explains RESTFul service provisioning on top of AWS cloud services. If a user has a program/software that is executable on an AWS EC2 instance, this document shows step-by-step instructions on how to create RESTFul services so other users could run the program/software via HTTP GET/POST methods. The RESTFul services are created via AWS Lambda and API Gateway Services.
 
+The applications used in this document are from data analytics repositories at [AI for Atmosphere Remote Sensing](https://github.com/AI-4-atmosphere-remote-sensing)
+
 ## _What is AWS Lambda Functionon:_
 AWS Lambda is a serverless compute service that can run any sort of code without having to provision or manage servers. Lambda runs your code on highly available compute infrastructure and performs all of the administration of computing resources, capacity provisioning, automated scaling, monitoring, and logging.
 
 ## _What is AWS API Gateway:_
-Amazon API Gateway is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale. 
-In this tutorial we considered REST APIs. A REST (representational state transfer), also called RESTful API is an architectural style for an 
+Amazon API Gateway is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale.
+In this tutorial we considered REST APIs. A REST (representational state transfer), also called RESTful API is an architectural style for an
 application program interface (API) that uses HTTP requests to access and use data. That data can be used to GET, PUT, POST and DELETE data types,
 which refers to the reading, updating, creating and deleting of operations concerning resources.
 
@@ -43,11 +45,11 @@ Select the entity type _(in this case it is **AWS Services**)_, next in the **Us
 
 ![text-here](./APIGateway_Images_dev/5.png)
 
-In this page we cannot add any policies to the IAM role just created. But we can attach all necessary policies while configuring the lambda function. So, you can just the **Next** (blue button on the bottom right) button. 
+In this page we cannot add any policies to the IAM role just created. But we can attach all necessary policies while configuring the lambda function. So, you can just the **Next** (blue button on the bottom right) button.
 
 ![text-here](./APIGateway_Images_dev/6.png)
 
-In **Role details**, enter a **Role name** and click **Create role** (blue button on the bottom right). You can leave everything st is. 
+In **Role details**, enter a **Role name** and click **Create role** (blue button on the bottom right). You can leave everything st is.
 
 ***We are done creating the **Role** which was the first step. Now we will move on to the next step which is configuring a lambda function!***
 
@@ -71,7 +73,7 @@ In this page you can simply follow the image. First select **Author from scratch
 ***note:*** If you wanto use any previously created **role** you can simply skip Step1 and start from step2.
 ![text-here](./APIGateway_Images_dev/11.png)
 
-Now you are redirected to the Lambda console where you can deploy your code in the **Code Source** box. A sample code is given that prints __Hello From Lambda!__. 
+Now you are redirected to the Lambda console where you can deploy your code in the **Code Source** box. A sample code is given that prints __Hello From Lambda!__.
 
 In this example, we deployed two seperate Lambda functions following ***Step2- Lambda Function*** to trigger two separate events, one is to execute the pre-deployed Machine Learning model in EC2 using ```service_1_trigger_lambda_to_execute.py``` and another one to copy the result files to the corresponding S3 bucket using ```service_2_trigger_lambda_to_copy_files_to_S3.py```. User can simply copy the Python file contents and paste it to the Lambda console and follow the rest of the processes to make it work.
 
@@ -110,7 +112,7 @@ Click the **Services** _(with 9 dots)_ and choose **Networking & Content Deliver
 
 ![text-here](./APIGateway_Images_dev/20.png)
 
-In this page, click the **Create API** button. 
+In this page, click the **Create API** button.
 
 ![text-here](./APIGateway_Images_dev/21.png)
 
