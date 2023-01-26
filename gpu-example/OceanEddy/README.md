@@ -1,5 +1,5 @@
 # What is Ocean Eddy?
-Ocean circulation is turbulent and full of small-scale structures. The term eddy refers to a circular current of water or air that appears to be an anomaly of the large-scale background flow. Coherent eddies in the ocean are temporary loops of swirling water that can travel long distances before dissipating. The size of ocean eddies cover a broad range between several kilometers to hundreds of kilometers.
+The term eddy refers to a circular current of water or air that appears to be an anomaly of the large-scale background flow. Coherent eddies in the ocean are temporary loops of swirling water that can travel long distances before dissipating. The size of ocean eddies cover a broad range between several kilometers to hundreds of kilometers.
 
 ## What is this repository about?
 In this repository, we show how the small-scale eddies can be detected using CNN based models in the cloud platform from the SAR images. We used SageMaker and EC2 as the main platforms to deploy the models. Following is an example on how to configure the SageMaker for deploying ocean eddy detection mode.
