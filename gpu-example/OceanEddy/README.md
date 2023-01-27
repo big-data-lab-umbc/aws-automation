@@ -94,7 +94,7 @@ If you want to create bucket, enter a _(i)_ **Bucket name** and click Create buc
 
 ![text-here](./images/18.png)
 
-### Step12 ***-Communicate with S3 bucket from SagemMaker!-***
+### Step12 ***-Communicate with S3 bucket from SageMaker!-***
 
 Once the bucket creation/selection is done, we are back to SageMaker notebook to access the bucket. To do so we need to copy the data from S3 to SageMaker using `!aws s3 cp s3://your/s3/dir/ destDir --recursive` command. This command has four parts, `!aws s3 cp` is the copy command, `s3://your/s3/dir/` is the S3 URI _(example in second image on how to get the URI)_, `destDir` is the destination directiry in SageMaker where you want to store the data _(data is destination dir in our case as an example, ii)_, and `--recursive` is a flag to copy all file recursively from S3 bucket.
 
