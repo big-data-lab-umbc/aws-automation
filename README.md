@@ -31,7 +31,7 @@ This git help you achieve single machine computation and distributed (multiple) 
     - [Web based approach to run the example on a single GPU with docker](./gpu-example/Web_based_single_GPU_example_with_docker.md)
     - [Web based approach to run the example on multi-GPUs with docker](./gpu-example/Web_based_multi_GPUs_example_with_docker.md)
   - SageMaker-based: Ocean Eddy Application.
-    - [SageMaker based approach to run the example](./gpu-example/OceanEddy/readme.md)
+    - [SageMaker based approach to run the example](./gpu-example/OceanEddy/README.md)
 - Lambda Function based Executions: AWS Lambda Function and API Gateway Services provide another way to do data analytics.
   - [Lambda Function based approach to do machine learning based cloud property retrieval](./lambda-example/cloud_property_retrieval_aws/ReadMe.md)
 
