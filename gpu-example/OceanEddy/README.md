@@ -1,4 +1,10 @@
-# What is Ocean Eddy?
+# Table of Contents
+  ## 1. [What is Ocean Eddy?](https://github.com/big-data-lab-umbc/aws-automation/tree/main/gpu-example/OceanEddy#:~:text=README.md-,What%20is%20Ocean%20Eddy%3F,-The%20term%20eddy)
+  ## 2. SageMaker based Configuration
+  ## 3. EC2 SageMaker based Configuration
+  
+
+## What is Ocean Eddy?
 The term eddy refers to a circular current of water or air that appears to be an anomaly of the large-scale background flow. Coherent eddies in the ocean are temporary loops of swirling water that can travel long distances before dissipating. The size of ocean eddies cover a broad range between several kilometers to hundreds of kilometers.
 
 ## What is this repository about?
