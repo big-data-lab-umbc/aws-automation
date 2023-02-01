@@ -176,5 +176,3 @@ Then we can go back to EC2 instances and see that the instance that we created i
 The follwoing image shows on the top tab _(1)_ **SSH client**, if we select that we see the details. First we need to do the _(2)_ ```chmod``` on the key pair and then using _(3)_ the ssh comman on a terminal to access the EC2 console remotely. Here we can just write or import code and necessary files and simply run the code files which will generate resutls.
 
 ![text-here](./images/ec2/12.png)
-
-click the **Services** _(with 9 dots)_ and choose **EC2** from the dropdown. Alternatively, you can type **ec2** in the search box _(second image)_, and you can click on it.
