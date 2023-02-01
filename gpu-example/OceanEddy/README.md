@@ -1,16 +1,16 @@
 # Table of Contents
  >> ### 1. [What is Ocean Eddy?](https://github.com/big-data-lab-umbc/aws-automation/tree/main/gpu-example/OceanEddy#:~:text=README.md-,What%20is%20Ocean%20Eddy%3F,-The%20term%20eddy)
- >> ### 2. SageMaker based Configuration
- >> ### 3. EC2 SageMaker based Configuration
+ >> ### 2. [SageMaker based Configuration](https://github.com/big-data-lab-umbc/aws-automation/tree/main/gpu-example/OceanEddy#:~:text=Configuring%20SageMaker%20for%20Ocean%20Eddy%20classification%20model)
+ >> ### 3. [EC2 SageMaker based Configuration]()
 
 
-## What is Ocean Eddy?
+## 1. What is Ocean Eddy?
 The term eddy refers to a circular current of water or air that appears to be an anomaly of the large-scale background flow. Coherent eddies in the ocean are temporary loops of swirling water that can travel long distances before dissipating. The size of ocean eddies cover a broad range between several kilometers to hundreds of kilometers.
 
 ## What is this repository about?
 In this repository, we show how the small-scale eddies can be detected using CNN based models in the cloud platform from the SAR images. We used SageMaker and EC2 as the main platforms to deploy the models. Following is an example on how to configure the SageMaker for deploying ocean eddy detection mode.
 
-## Configuring SageMaker for Ocean Eddy classification model
+## 2. Configuring SageMaker for Ocean Eddy classification model
 
 SageMaker is an aws Service that allows you to use Jupyter like notebooks.
 
