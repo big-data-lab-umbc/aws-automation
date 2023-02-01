@@ -115,4 +115,66 @@ Fianlly, you can run the notebook. You can either run cell by cell using **cmd +
 
 ![text-here](./images/14.png)
 
-***Congratulations! You are all set!***
+***Congratulations! You are all set with AWS SageMaker!***
+
+## 3. Configuring EC2 for Ocean Eddy classification model
+
+EC2 is an aws Service that allows you to deploy models in a comman line interface environment.
+
+## Installation
+
+Please follow the folliwing steps to configure EC2
+
+### Step1 and Step2 ***-Sigining in! and Select Region-***
+
+This two steps are the same as the previous one. Please follow accorddingly. Next steps are different. Please follow carefully!
+
+### Step3 ***-Find EC2-***
+
+click the **Services** _(with 9 dots)_ and choose **EC2** from the dropdown. Alternatively, you can type **ec2** in the search box _(second image)_, and you can click on it. 
+![text-here](./images/ec2/3.png)
+
+### Step4 ***-Get the instance-***
+
+Once you are in the EC2 console, click **Instances** under Instances on the left pannel.
+![text-here](./images/ec2/4.png)
+
+### Step5 ***-launching an Instance-***
+
+You will see an orange button on the top right corner as **Launch instances** _(as the following images shows)_ to start the launching process. 
+![text-here](./images/ec2/5.png)
+
+### Step6 ***-Prepare the instance-***
+
+First, You can give a **Name** _(though its optional, DemoTest is a name in this case)_, Second, choose an **OS** and third, select the **AMI** from the dropdown.
+![text-here](./images/ec2/6.png)
+
+### Step7 ***-Choose the right AMI-***
+
+In this section we chose a Deep learning Tensorflow based AMI as it comes with most of pre-installed libraries that we need. You can select any plain one _(i.e., ubuntu)_ and then install all necessary libraries
+![text-here](./images/ec2/7.png)
+
+### Step8 ***-CPU or GPU-***
+
+In this case we selected **P** type instance which is GPU. You can find on AWS which category is what _(in terms of CPU or GPU)_ and select the one you need.
+![text-here](./images/ec2/8.png)
+
+### Step9 ***-Final Step-***
+
+At this step, we need to select the key pair. If you already have one just select that _(1)_, or you can create a new one _(2)_. Next we need to select the security group. In this case we selected the existing _(3)_ default _(4)_ group. However, you can define your own security group as necessary which is not shown here. Rest of the setting can be left as it it. Finally we can clink the **Launch instance** button _(5)_ on the bottom right.
+
+![text-here](./images/ec2/9.png)
+
+If the launch is success we will see something as follows.
+
+![text-here](./images/ec2/10.png)
+
+Then we can go back to EC2 instances and see that the instance that we created is either running ot about to run. Next, we can click on the Instance ID to get the details of SSH.
+
+![text-here](./images/ec2/11.png)
+
+The follwoing image shows on the top tab _(1)_ **SSH client**, if we select that we see the details. First we need to do the _(2)_ ```chmod``` on the key pair and then using _(3)_ the ssh comman on a terminal to access the EC2 console remotely. Here we can just write or import code and necessary files and simply run the code files which will generate resutls.
+
+
+click the **Services** _(with 9 dots)_ and choose **EC2** from the dropdown. Alternatively, you can type **ec2** in the search box _(second image)_, and you can click on it. 
+![text-here](./images/ec2/3.png)
